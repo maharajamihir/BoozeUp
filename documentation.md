@@ -7,6 +7,7 @@ Despite of the questionable Software Engineering course we took this semester, w
 
 ## Use Cases/ Functional Requirements
 
+0. Sign up or Log in to profile
 1. Enter location, radius and type of booze one wants
 2. Pings people that have booze
 3. Browse and search function for booze in your area
