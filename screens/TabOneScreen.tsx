@@ -5,6 +5,9 @@ import Geolocation from 'react-native-geolocation-service';
 
 export default function TabOneScreen() {
   const [hasPermission, setPermission] = useState(false);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
+
 
   const requestLocationPermission = async () => {
     try {
@@ -24,6 +27,21 @@ export default function TabOneScreen() {
     }
   };
 
+  const getLocation = () => {
+      Geolocation.getCurrentPosition(
+          (position) => {
+            console.log(position);
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+          },
+          (error) => {
+            // See error code charts below.
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      );
+  };
+
   if(!hasPermission){
       return (
       <View style={styles.container}>
@@ -34,7 +52,9 @@ export default function TabOneScreen() {
       } else{
         return (
         <View style={styles.container}>
-        <Text style={styles.item}>We have your location hahaha</Text>
+        <Text style={styles.item}>We have your location hahaha</Text> 
+        <Text style={styles.item}> latitude: {latitude} longitude: {longitude}</Text>
+        <Button title="print location" onPress={getLocation} />
       </View>
         );
       }
