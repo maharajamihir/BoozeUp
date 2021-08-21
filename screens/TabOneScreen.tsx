@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import { Button, PermissionsAndroid, SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { Button, PermissionsAndroid, StatusBar, StyleSheet, Text, View } from "react-native";
+import Geolocation from 'react-native-geolocation-service';
 
 
 export default function TabOneScreen() {
   const [hasPermission, setPermission] = useState(false);
 
-  const requestLoactionPermission = async () => {
+  const requestLocationPermission = async () => {
     try {
       const granted_fine = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
@@ -27,7 +28,7 @@ export default function TabOneScreen() {
       return (
       <View style={styles.container}>
         <Text style={styles.item}>Try permissions</Text>
-        <Button title="request permissions" onPress={requestCameraPermission} />
+        <Button title="request permissions" onPress={requestLocationPermission} />
       </View>
     );
       } else{
