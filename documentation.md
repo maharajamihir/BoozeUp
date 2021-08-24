@@ -33,7 +33,7 @@ Despite of the questionable Software Engineering course we took this semester, w
 -> reference booze_info table with a foreign key relationship
 -> Make incremental primary key for all tables instead of starting count everytime server starts (Possibly UUID)
 4. Display all ads on one screen
-5. Implement browse functionality based on location, wanted booze
+5. Implement browse functionality based on location, wanted booze (basic, without lat long)
 6. Make Login Page in App (only UI) -> Email (as username), password, phone number, 18+ check
 7. Deploy on Heroku
 #### Recap
@@ -44,9 +44,12 @@ Despite of the questionable Software Engineering course we took this semester, w
 1. Send Registration/Login Information to Backend and Store Users in Database
 2. 18+ check in registration
 3. Implement location based search via latitude and logitude instead of city name (optionally convert city to lat-long)
+- APP: Map integration and getting location (lat-long) from user + integration to backend service
+- BE: Search based on latlong in database, optionally conversion from city to lat-long
 4. Pagination of said search results (configurable)
 ### Sprint 3:
+1. APP: Implement Upload Ad screen 
+- BE: Implement location service similarly to browse screen
 - Implement Audit Log
 - Implement log in DB
--  
 ## Testing
