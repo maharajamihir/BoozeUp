@@ -29,4 +29,5 @@ Despite of the questionable Software Engineering course we took this semester, w
 2. Make connection from backend to database
 3. Let *seller* put simple ad with type of booze, price and location(city name)
 4. Display all ads on one screen
+5. Implement browse functionality based on location, wanted booze
 ## Testing
