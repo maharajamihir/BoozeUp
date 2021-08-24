@@ -40,6 +40,7 @@ Despite of the questionable Software Engineering course we took this semester, w
 - Minimal verion of API working on localhost
 - React Native project Navigation initialized
 - Database setup (enter database with command "heroku pg:psql"
+- deployment on heroku not working due to multiple python files
 ### Sprint 2:
 1. Send Registration/Login Information to Backend and Store Users in Database
 2. 18+ check in registration
