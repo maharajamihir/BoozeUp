@@ -27,11 +27,19 @@ function HomeScreen({ navigation }) {
 function SettingsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings screen</Text>
+      <Text>Profile screen</Text>
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
       />
+    </View>
+  );
+}
+
+function BrowseScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Insert Browse functionality here</Text>
     </View>
   );
 }
@@ -65,6 +73,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Browse" component={BrowseScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
