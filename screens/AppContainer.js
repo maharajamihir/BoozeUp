@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Button, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -70,7 +70,7 @@ const Tab = createBottomTabNavigator();
 
 export default function AppContainer() {
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Browse" component={BrowseScreen} />

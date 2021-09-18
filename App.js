@@ -1,9 +1,14 @@
-import * as React from 'react';
-import AppContainer from './screens/AppContainer.js'
-import LoginContainer from './screens/LoginContainer.js'
+import React, {useContext} from 'react';
+import { Navigation } from './navigation/index.js';
+import { AuthenticationContextProvider } from './services/AuthentificationContext.js';
 
 export default function App() {
+
   return (
-    <AppContainer />
-  );
+    <AuthenticationContextProvider>
+        <Navigation />
+    </AuthenticationContextProvider>
+    
+  ); 
+  
 }
