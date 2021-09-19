@@ -2,25 +2,28 @@ import React from 'react';
 import { StyleSheet, TextInput, Text, View } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
-    var dict = {
-        "location": ''
-    };
+    let userLocation = '';
     const setLocation = (loc) => {
-        dict["location"] = loc;
+        userLocation = loc;
         changeLocation();
     }
     const [boozeOffers, setboozeOffers] = React.useState(null);
     const changeLocation = () => {
-        fetch('http://localhost:5000/browse?', {
-            method: 'post',
-            headers: {
-                'Content-Type' : 'application/json'
-                },
-            body: JSON.stringify(dict)
+        const url = 'https://boozeup.herokuapp.com/browse?'
+        fetch(url, {
+            method: 'POST',
+            headers: {    
+                Accept: 'application/json',
+                'Content-Type': 'application/json; charset=utf-8'
+              },  
+            body: JSON.stringify({
+                    location : userLocation,
+                })
         }).then(response => response.json())
         .then(data => setboozeOffers(data))
         .then(booze => console.log(booze))
-        .catch(error => console.log(error));
+        .catch(error => console.log(error))
+        .then(l => {return l});
     }
     return (
       <View style={styles.container}>
@@ -29,7 +32,7 @@ export default function HomeScreen({ navigation }) {
             onChangeText={setLocation}
             placeholder="Enter your location"
         />      
-                          
+        <Text>{!boozeOffers ? changeLocation() : boozeOffers}</Text>                  
       </View>
     );
   }
