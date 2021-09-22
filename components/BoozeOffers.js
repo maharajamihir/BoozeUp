@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { Button, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 
+
+
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.booze_type
-, textColor]}>{item.booze_type}</Text>
+    <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price} Euros</Text>
   </TouchableOpacity>
 );
 
-const App = () => {
+const BoozeOffers = (props) => {
   const [selectedId, setSelectedId] = useState(null);
-  const [boozeOffers, setboozeOffers] = React.useState();
+  const [boozeOffers, setboozeOffers] = useState(null);
+
   const data = () => {
-    // const url = 'https://boozeup.herokuapp.com/browse?'
-    const url  = 'http://localhost:5000/browse?'
+    const url = 'https://boozeup.herokuapp.com/browse?'
+    //const url  = 'http://localhost:5000/browse?'
     fetch(url, {
         method: 'POST',
         headers: {    
@@ -21,7 +23,7 @@ const App = () => {
             'Content-Type': 'application/json; charset=utf-8'
           },  
         body: JSON.stringify({
-                location : 80636,
+                location : props.location,
             })
     }).then(response => response.json())
     .then(data => setboozeOffers(data))
@@ -48,7 +50,8 @@ const App = () => {
       <Button
             title="Search"
             onPress={() => data()}
-      />    
+      />
+      <Text>Searching for results in: {props.location}</Text>   
       <FlatList
         data={boozeOffers}
         renderItem={renderItem}
@@ -65,13 +68,14 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
+    flex: 3, 
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
   },
   booze_type: {
-    fontSize: 32,
+    fontSize: 20,
   },
 });
 
-export default App;
+export default BoozeOffers;

@@ -1,38 +1,22 @@
-import React from 'react';
-import { StyleSheet, TextInput, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, TextInput, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
+import BoozeOffers from '../components/BoozeOffers';
+
+
 
 export default function HomeScreen({ navigation }) {
-    let userLocation = '';
-    const setLocation = (loc) => {
-        userLocation = loc;
-        changeLocation();
-    }
-    const [boozeOffers, setboozeOffers] = React.useState(null);
-    const changeLocation = () => {
-        const url = 'https://boozeup.herokuapp.com/browse?'
-        fetch(url, {
-            method: 'POST',
-            headers: {    
-                Accept: 'application/json',
-                'Content-Type': 'application/json; charset=utf-8'
-              },  
-            body: JSON.stringify({
-                    location : userLocation,
-                })
-        }).then(response => response.json())
-        .then(data => setboozeOffers(data))
-        .then(booze => console.log(booze))
-        .catch(error => console.log(error))
-        .then(l => {return l});
-    }
+    const [userLocation, setLocation] = useState(null);
+
     return (
       <View style={styles.container}>
         <TextInput 
             style={styles.input}
             onChangeText={setLocation}
-            placeholder="Enter your location"
-        />      
-        <Text>{!boozeOffers ? changeLocation() : boozeOffers}</Text>                  
+            placeholder="Enter your location (PLZ)"
+            keyboardType="number-pad"
+        />     
+        <BoozeOffers location={userLocation}/>
+
       </View>
     );
   }
