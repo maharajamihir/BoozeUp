@@ -28,7 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "",
+    "description": "BoozeUp - Buy and Sell Booze convienently and easily using an App. No hassle to reach the stores before they close or to drive far to get booze in the evening. Locate Booze in your Area and get it instantly!",
     "githubUrl": "https://github.com/maharajamihir/BoozeUp/"
   }
 }
