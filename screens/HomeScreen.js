@@ -1,69 +1,49 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, TextInput, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
-import BoozeOffers from '../components/BoozeOffers';
-import * as Location from 'expo-location';
-
+import ManualLocationSearch from '../components/ManualLocationSearch';
+import AutomaticLocationDisplay from '../components/AutomaticLocationDispay';
+import ToggleSwitch from 'toggle-switch-react-native'
 
 
 export default function HomeScreen({ navigation }) {
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);
-    /* TODO: @mihir I don't think that this is still necessary*/
-    const [userLocation, setUserLocation] = useState(null);
-    
-
-    useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-
-            // TODO: man kann auch Location.getCurrentPositionAsync nehmen, dann genauer aber langsamer
-            let location = await Location.getLastKnownPositionAsync({});
-            setLocation(location);
-        })();
-    }, []);
-
-    let text = 'Waiting..';
-    if (errorMsg) {
-        text = errorMsg;
-    } else if (location) {
-        text = JSON.stringify(location);
-    }
-
+    const [toggleButtonPressed, setToggleButtonPressed] = React.useState(false);
     return (
-      <View style={styles.container}>
-        <Text>
-          {text}
-        </Text>
-        <TextInput 
-            style={styles.input}
-            onChangeText={setUserLocation}
-            placeholder="Enter your location (PLZ)"
-            autoCompleteType="postal-code"
-            keyboardType="number-pad"
-        />
-        {/* TODO: Needs fixing. I don't know about this stuff @mihir*/
-        <BoozeOffers location={userLocation}/>
-         }
-      </View>
+    <SafeAreaView style={styles.maincontainer}>
+        <View>
+            <ToggleSwitch
+            style={styles.button}
+            isOn={toggleButtonPressed}
+            onColor="green"
+            offColor="red"
+            label="Manual Location"
+            labelStyle={{ color: "black", fontWeight: "900" }}
+            size="large"
+            onToggle={isOn => {
+                console.log("changed to : ", isOn);
+                setToggleButtonPressed(!toggleButtonPressed);
+                }}
+            /> 
+        </View>
+        <View style={styles.container}>
+        {toggleButtonPressed ? <ManualLocationSearch /> : <AutomaticLocationDisplay />}
+        </View>
+    </SafeAreaView>
     );
   }
   
 const styles = StyleSheet.create({
+    maincontainer:
+    {
+        flex: 1, 
+    },
     container:
     {
         flex: 1, 
         justifyContent: 'center',
         alignItems: 'center' 
     },
-    input: {
-        height: 50,
-        width: 300,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
+    button: {
+        right: 5,
+        top: 5,
     },
 });
