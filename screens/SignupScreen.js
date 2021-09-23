@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Text, View, TextInput, StyleSheet } from 'react-native';
-import { AuthenticationContext } from '../services/AuthentificationContext';
+import { AuthenticationContext } from '../services/AuthenticationContext';
 
 
 export default function LoginScreen() {

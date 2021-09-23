@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { AuthenticationContext } from '../services/AuthentificationContext';
+import { AuthenticationContext } from '../services/AuthenticationContext';
 import AppContainer from '../screens/AppContainer';
 import LoginContainer from '../screens/LoginContainer';
 
