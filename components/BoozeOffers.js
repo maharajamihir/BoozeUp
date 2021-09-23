@@ -32,7 +32,7 @@ const BoozeOffers = (props) => {
     .then(l => {return l});
   }
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+    const backgroundColor = item.id === selectedId ? "#000000" : "#ffffff";
     const color = item.id === selectedId ? 'white' : 'black';
 
     return (
@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
-  item: {
-    flex: 3, 
+  item: { 
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,

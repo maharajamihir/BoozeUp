@@ -29,7 +29,7 @@ export default function LoginScreen() {
                 </View>
                 <Button
                 title="Login"
-                onPress={() => onLogin(email,password)}
+                onPress={() => onLogin(email.trim(),password.trim())}
                 />
       </View>
     );
