@@ -7,8 +7,10 @@ import * as Location from 'expo-location';
 
 export default function HomeScreen({ navigation }) {
     const [location, setLocation] = useState(null);
-    const [userLocation, setUserLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
+    /* TODO: @mihir I don't think that this is still necessary
+    const [userLocation, setUserLocation] = useState(null);
+    */
 
     useEffect(() => {
         (async () => {
@@ -18,6 +20,7 @@ export default function HomeScreen({ navigation }) {
                 return;
             }
 
+            // TODO: man kann auch Location.getCurrentPositionAsync nehmen, dann genauer aber langsamer
             let location = await Location.getLastKnownPositionAsync({});
             setLocation(location);
         })();
