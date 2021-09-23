@@ -14,14 +14,3 @@ export const Navigation = () => {
     </NavigationContainer>
   );
 };
-
-/*
-export const Navigation = () => {
-  //const isAuthenticated = true;
-  return (
-    <NavigationContainer>
-      <AppContainer/>
-    </NavigationContainer>
-  );
-};
-*/
