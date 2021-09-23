@@ -6,7 +6,7 @@ import { AuthenticationContext } from '../services/AuthenticationContext';
 export default function LoginScreen() {
     const [email, setEmail] = React.useState(null);
     const [password, setPassword] = React.useState(null);
-    const { onLogin } = useContext(AuthenticationContext);
+    const { onLogin, error, isLoading } = useContext(AuthenticationContext);
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
        
@@ -24,7 +24,8 @@ export default function LoginScreen() {
                             onChangeText={setPassword}
                             secureTextEntry={true}
                         />
-                        
+                        {isLoading ? <Text>Logging in... Please wait...</Text> : null}
+                        {(error && error[1] == 400) ? <Text>User not found! Please check your login credentials.</Text> : null}
                 </View>
                 <Button
                 title="Login"
