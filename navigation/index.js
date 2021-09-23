@@ -13,8 +13,4 @@ export const Navigation = () => {
       {isAuthenticated ? <AppContainer /> : <LoginContainer />}
     </NavigationContainer>
   );
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 72a096e440613d958db332518c88b7b97ae2fd76
