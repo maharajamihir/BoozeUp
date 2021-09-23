@@ -9,6 +9,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 
   const onLogin = (email, password) => {
     setIsLoading(true);
+    setError(null);
     const url = 'https://boozeup.herokuapp.com/login?'
         fetch(url, {
             method: 'POST',
@@ -21,7 +22,14 @@ export const AuthenticationContextProvider = ({ children }) => {
                     password : password
                 })
         }).then(response => response.json())
-        .then(data => setUser(data))
+        .then(data => {
+          console.log(data);
+          if(data.constructor == Array){
+            setError(data);
+          } else {
+            setUser(data);
+          }
+        })
         .then(token => console.log(token))
         .catch(error => console.log(error))
         .finally(() => setIsLoading(false));
