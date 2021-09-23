@@ -12,7 +12,7 @@ export default function AddBoozeScreen({ navigation }) {
   const [price, setPrice] = React.useState(null);
 
 
-  if(!userOffers && !error){
+  if(!userOffers){
     return (
       <View style={styles.container}>
         <TextInput 

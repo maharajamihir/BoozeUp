@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { View, Text} from "react-native";
+import { View, Text, StyleSheet} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { AuthenticationContext } from "../services/AuthenticationContext";
 import { BoozeOfferContext } from "../services/BoozeOfferContext";
 
@@ -13,15 +14,34 @@ const ProfileScreen = () => {
     console.log(userData);
   }, []);
 
-  return (
-    <View>
-      <Text>
-        Your current Token: {user}
-      </Text>
-      <Text>{error}</Text>
-      {(!userData) ? <Text>Loading...</Text> : <Text>{userData.username}</Text>}
-    </View>
-  );
+  if(!userData){
+    return (
+      <View style={styles.container}>
+        <Text>
+          Loading your data ...
+        </Text>
+      </View>
+    );
+  } else{
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>Username: {userData.username}</Text>
+        <Text>Email: {userData.email}</Text>
+        <Text>Phone Number: {userData.phone_number}</Text>
+        <Text>Token: {userData.token}</Text>
+      </SafeAreaView>
+    )
+  }
+ 
 }
+
+const styles = StyleSheet.create({
+  container:
+  {
+      flex: 1, 
+      justifyContent: 'center',
+      alignItems: 'center' 
+  },
+});
 
 export default ProfileScreen;

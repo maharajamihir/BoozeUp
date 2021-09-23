@@ -13,8 +13,8 @@ const fetchUserData = (token) => {
   console.log(token)
   setIsLoading(true);
   setError(null);
-  const url = 'http://localhost:5000/user-data?';
-  //const url = 'https://boozeup.herokuapp.com/user-data?'
+  //const url = 'http://localhost:5000/user-data?';
+  const url = 'https://boozeup.herokuapp.com/user-data?'
       fetch(url, {
           method: 'POST',
           headers: {    
@@ -27,10 +27,11 @@ const fetchUserData = (token) => {
       }).then(response => response.json())
       .then(data => {
         console.log(data);
-        if(data.constructor == Array){
+        if(data.constructor == Array && data[1] == 404){
+          console.log("An error occured!")
           setError(data);
         } else {
-          setUserData(data[0]);
+          setUserData(data);
         }
       })
       .then(userdata => console.log(userdata[0]))
@@ -44,8 +45,8 @@ const fetchUserData = (token) => {
 const uploadOffer = (token, booze, price, location) => {
   setIsLoading(true);
   setError(null);
-  const url = 'http://localhost:5000/make-offer?'
-  //const url = 'https://boozeup.herokuapp.com/make-offer?'
+  //const url = 'http://localhost:5000/make-offer?'
+  const url = 'https://boozeup.herokuapp.com/make-offer?'
       fetch(url, {
           method: 'POST',
           headers: {    
@@ -61,7 +62,7 @@ const uploadOffer = (token, booze, price, location) => {
       }).then(response => response.json())
       .then(data => {
         console.log(data);
-        if(data.constructor == Array){
+        if(data.constructor == Array && data[1] == 404){
           setError(data);
         } else {
           setUserOffers(data);
