@@ -17,19 +17,22 @@ export default function LoginScreen() {
                         <TextInput 
                             style={styles.input}
                             onChangeText={setEmail}
+                            autoCompleteType="email"
+                            keyboardType="email-address"
                         />
                         <Text>Password:</Text>
                         <TextInput 
                             style={styles.input}
                             onChangeText={setPassword}
                             secureTextEntry={true}
+                            autoCompleteType="password"
                         />
                         {isLoading ? <Text>Logging in... Please wait...</Text> : null}
                         {(error && error[1] == 400) ? <Text>User not found! Please check your login credentials.</Text> : null}
                 </View>
                 <Button
                 title="Login"
-                onPress={() => onLogin(email,password)}
+                onPress={() => onLogin(email.trim(),password.trim())}
                 />
       </View>
     );

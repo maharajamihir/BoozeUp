@@ -36,8 +36,35 @@ export const AuthenticationContextProvider = ({ children }) => {
       
   };
 
-  const onRegister = () => {
-
+  const onRegister = (username,number,email,password) => {
+    setIsLoading(true);
+    setError(null);
+    const url = 'https://boozeup.herokuapp.com/signup?'
+        fetch(url, {
+            method: 'POST',
+            headers: {    
+                Accept: 'application/json',
+                'Content-Type': 'application/json; charset=utf-8'
+              },  
+            body: JSON.stringify({
+                    username : username,
+                    phone_number : number,
+                    email : email,
+                    password : password
+                })
+        }).then(response => response.json())
+        .then(data => {
+          console.log(data);
+          if(data.constructor == Array){
+            setError(data);
+          } else {
+            setUser(data);
+          }
+        })
+        .then(token => console.log(token))
+        .catch(error => console.log(error))
+        .finally(() => setIsLoading(false));
+      
   };
 
   const onLogout = () => {

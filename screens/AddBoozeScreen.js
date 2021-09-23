@@ -1,39 +1,55 @@
-import React from 'react';
-import { StyleSheet, TextInput, Text, View } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, TextInput, Text, View , Button} from 'react-native';
+import { BoozeOfferContext } from '../services/BoozeOfferContext';
+import { AuthenticationContext } from '../services/AuthenticationContext';
 
 export default function AddBoozeScreen({ navigation }) {
-    let userLocation = '';
-    const setLocation = (loc) => {
-        userLocation = loc;
-        changeLocation();
-    }
-    const [boozeOffers, setboozeOffers] = React.useState(null);
-    const changeLocation = () => {
-        const url = 'https://boozeup.herokuapp.com/browse?'
-        fetch(url, {
-            method: 'POST',
-            headers: {    
-                Accept: 'application/json',
-                'Content-Type': 'application/json; charset=utf-8'
-              },  
-            body: JSON.stringify({
-                    location : userLocation,
-                })
-        }).then(response => response.json())
-        .then(data => setboozeOffers(data))
-        .then(booze => console.log(booze))
-        .catch(error => console.log(error))
-        .then(l => {return l});
-    }
+  const {user} = useContext(AuthenticationContext);
+  const {uploadOffer, userOffers, error} = useContext(BoozeOfferContext);
+
+  const [location, setLocation] = React.useState(null);
+  const [booze, setBooze] = React.useState(null);
+  const [price, setPrice] = React.useState(null);
+
+
+  if(!userOffers){
     return (
       <View style={styles.container}>
         <TextInput 
             style={styles.input}
             onChangeText={setLocation}
-            placeholder="Enter your location"
-        />              
+            placeholder="Enter your location (PLZ)"
+            autoCompleteType="postal-code"
+            keyboardType="number-pad"
+        />  
+        <TextInput 
+            style={styles.input}
+            onChangeText={setBooze}
+            placeholder="Enter Booze-Type"
+        />
+        <TextInput 
+            style={styles.input}
+            onChangeText={setPrice}
+            placeholder="Enter Price (Integer!)"
+            keyboardType="number-pad"
+        />
+        {(location && booze && price) ? 
+        <Button
+        title="Upload Offer"
+        onPress={() => uploadOffer(user, booze, price, location)}
+        /> : 
+        <Text>Please fill out all the fields to upload an offer</Text>
+        }             
       </View>
     );
+      }
+      else {
+        return (
+          <View style={styles.container}>
+           Your offer was successfully uploaded!  
+          </View>
+        );
+      }
   }
   
 const styles = StyleSheet.create({

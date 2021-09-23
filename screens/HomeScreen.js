@@ -39,6 +39,7 @@ export default function HomeScreen({ navigation }) {
             style={styles.input}
             onChangeText={setUserLocation}
             placeholder="Enter your location (PLZ)"
+            autoCompleteType="postal-code"
             keyboardType="number-pad"
         />
         {/* TODO: Needs fixing. I don't know about this stuff @mihir

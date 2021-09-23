@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import BoozeDisplay from "./BoozeDisplay";
 
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
@@ -32,7 +34,7 @@ const BoozeOffers = (props) => {
     .then(l => {return l});
   }
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+    const backgroundColor = item.id === selectedId ? "#000000" : "#ffffff";
     const color = item.id === selectedId ? 'white' : 'black';
 
     return (
@@ -67,8 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
-  item: {
-    flex: 3, 
+  item: { 
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
