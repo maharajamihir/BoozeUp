@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, TextInput, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
+import { StyleSheet, TextInput, View} from 'react-native';
 import BoozeOffers from '../components/BoozeOffers';
 
 
@@ -13,6 +13,7 @@ export default function HomeScreen({ navigation }) {
             style={styles.input}
             onChangeText={setLocation}
             placeholder="Enter your location (PLZ)"
+            autoCompleteType="postal-code"
             keyboardType="number-pad"
         />     
         <BoozeOffers location={userLocation}/>

@@ -6,9 +6,10 @@ import { AuthenticationContext } from '../services/AuthenticationContext';
 export default function LoginScreen() {
     const [username, setUsername] = React.useState(null);
     const [email, setEmail] = React.useState(null);
+    const [number, setNumber] = React.useState(null);
     const [password, setPassword] = React.useState('');
     const [doesPasswordMatch, setDoesPasswordMatch] = React.useState(false);
-    const { onRegister } = useContext(AuthenticationContext);
+    const { onRegister, error, isLoading } = useContext(AuthenticationContext);
 
     const repeatPassword =(repeatedPassword) => {
         if(repeatedPassword === password && password !== ''){
@@ -23,17 +24,24 @@ export default function LoginScreen() {
        
                 <Text>Please Login to BoozeUp!</Text>
                 <View>
-                  <Text>Username:</Text>
+                <Text>Username:</Text>
                     <TextInput 
                         style={styles.input}
                         onChangeText={setUsername}
-                  />  
+                  />
                   <Text>Email:</Text>
                     <TextInput 
                         style={styles.input}
                         onChangeText={setEmail}
                   />
+                  <Text>Phone Number:</Text>
+                    <TextInput 
+                        style={styles.input}
+                        onChangeText={setNumber}
+                        keyboardType="number-pad"
+                  />
                   <Text>Password:</Text>
+                  <Text>(Don't use your bank password. We save in plaintext)</Text>
                     <TextInput 
                         style={styles.input}
                         onChangeText={setPassword}
@@ -45,11 +53,12 @@ export default function LoginScreen() {
                         onChangeText={repeatPassword}
                         secureTextEntry={true}
                   />
-                    
+                  {isLoading ? <Text>Logging in... Please wait...</Text> : null}
+                        {(error && error[1] == 400) ? <Text>User with this email already exists.</Text> : null}
                 </View>{doesPasswordMatch ? 
                  <Button
                  title="Signup"
-                 onPress={() => onRegister(username,email,password)}
+                 onPress={() => onRegister(username.trim(),number,email.trim(),password.trim())}
                  /> : 
                  <Text>Please enter a password and ensure it matches the repeated password</Text>
                  }

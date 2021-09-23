@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import BoozeDisplay from "./BoozeDisplay";
 
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
