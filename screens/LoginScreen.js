@@ -30,10 +30,11 @@ export default function LoginScreen() {
                         {isLoading ? <Text>Logging in... Please wait...</Text> : null}
                         {(error && error[1] == 400) ? <Text>User not found! Please check your login credentials.</Text> : null}
                 </View>
+                {(email && password) ?
                 <Button
                 title="Login"
                 onPress={() => onLogin(email.trim(),password.trim())}
-                />
+                /> : null}
       </View>
     );
   }
