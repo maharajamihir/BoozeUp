@@ -8,9 +8,9 @@ import * as Location from 'expo-location';
 export default function HomeScreen({ navigation }) {
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
-    /* TODO: @mihir I don't think that this is still necessary
+    /* TODO: @mihir I don't think that this is still necessary*/
     const [userLocation, setUserLocation] = useState(null);
-    */
+    
 
     useEffect(() => {
         (async () => {
@@ -45,9 +45,9 @@ export default function HomeScreen({ navigation }) {
             autoCompleteType="postal-code"
             keyboardType="number-pad"
         />
-        {/* TODO: Needs fixing. I don't know about this stuff @mihir
+        {/* TODO: Needs fixing. I don't know about this stuff @mihir*/
         <BoozeOffers location={userLocation}/>
-         */}
+         }
       </View>
     );
   }
