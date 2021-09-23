@@ -30,7 +30,7 @@ export const AuthenticationContextProvider = ({ children }) => {
             setUser(data);
           }
         })
-        .then(token => console.log(token))
+        .then(token => console.log("Recieved Token " + token))
         .catch(error => console.log(error))
         .finally(() => setIsLoading(false));
       

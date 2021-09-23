@@ -4,9 +4,9 @@ import { AuthenticationContext } from '../services/AuthenticationContext';
 import AppContainer from '../screens/AppContainer';
 import LoginContainer from '../screens/LoginContainer';
 
-/* TODO: revert
 export const Navigation = () => {
   const { isAuthenticated } = useContext(AuthenticationContext);
+  /*Uncomment this for quick development purposes */
   //const isAuthenticated = true;
   return (
     <NavigationContainer>
@@ -14,8 +14,8 @@ export const Navigation = () => {
     </NavigationContainer>
   );
 };
-*/
 
+/*
 export const Navigation = () => {
   //const isAuthenticated = true;
   return (
@@ -24,3 +24,4 @@ export const Navigation = () => {
     </NavigationContainer>
   );
 };
+*/
