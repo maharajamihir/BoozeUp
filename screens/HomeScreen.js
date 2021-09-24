@@ -1,31 +1,28 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, TextInput, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
-import ManualLocationSearch from '../components/ManualLocationSearch';
+import { StyleSheet, Switch, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
+import MapViewComponent from '../components/MapViewComponent';
 import AutomaticLocationDisplay from '../components/AutomaticLocationDispay';
-import ToggleSwitch from 'toggle-switch-react-native'
 
 
 export default function HomeScreen({ navigation }) {
     const [toggleButtonPressed, setToggleButtonPressed] = React.useState(false);
+    const toggleButton = () => {
+        setToggleButtonPressed(!toggleButtonPressed);
+    }
     return (
     <SafeAreaView style={styles.maincontainer}>
-        <View>
-            <ToggleSwitch
-            style={styles.button}
-            isOn={toggleButtonPressed}
-            onColor="green"
-            offColor="red"
-            label="Manual Location"
-            labelStyle={{ color: "black", fontWeight: "900" }}
-            size="large"
-            onToggle={isOn => {
-                console.log("changed to : ", isOn);
-                setToggleButtonPressed(!toggleButtonPressed);
-                }}
+
+            <Switch
+                style={styles.button}
+                value={toggleButtonPressed}
+                trackColor={{ false: "#767577", true: "#81b0ff" }}
+                thumbColor={toggleButtonPressed ? "#f5dd4b" : "#f4f3f4"}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleButton}
             /> 
-        </View>
+
         <View style={styles.container}>
-        {toggleButtonPressed ? <ManualLocationSearch /> : <AutomaticLocationDisplay />}
+        {toggleButtonPressed ? <MapViewComponent /> : <AutomaticLocationDisplay />}
         </View>
     </SafeAreaView>
     );
@@ -38,9 +35,9 @@ const styles = StyleSheet.create({
     },
     container:
     {
-        flex: 1, 
+        flex: 0, 
         justifyContent: 'center',
-        alignItems: 'center' 
+        //alignItems: 'center' 
     },
     button: {
         right: 5,

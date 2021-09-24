@@ -7,7 +7,7 @@ import BoozeDisplay from "./BoozeDisplay";
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price} Euros</Text>
+    <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price}€ {item.distance} away!</Text>
   </TouchableOpacity>
 );
 
