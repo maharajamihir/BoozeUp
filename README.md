@@ -11,3 +11,6 @@ BoozeUp - Buy and Sell Booze convienently and easily using an App. No hassle to 
     - https://expo.dev/@maharajamihir/BoozeUp
 4. Enjoy! For Issues or Pull Requests: [here](https://github.com/maharajamihir/BoozeUp)
 
+## :book: Documentation
+A documentation about our engineering and development process of this App can be found [here](./documentation.md).
+
