@@ -3,10 +3,14 @@ import { StyleSheet, Text, SafeAreaView, Button, TouchableOpacity, FlatList} fro
 import * as Location from 'expo-location';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-      <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price} Euros</Text>
-    </TouchableOpacity>
-  );
+  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+    <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price}€</Text>
+   {item.distance ? 
+   <Text style={[styles.booze_type, textColor]}>only {item.distance} away!</Text> :
+   <Text style={[styles.booze_type, textColor]}>Check it out now!</Text>
+   }
+  </TouchableOpacity>
+);
 
 export default function AutomaticLocationDisplay({ navigation }) {
     const [selectedId, setSelectedId] = useState(null);
@@ -64,7 +68,7 @@ export default function AutomaticLocationDisplay({ navigation }) {
         .then(l => {return l});
       }
 
-      if(location){
+      if(location && !boozeOffers){
         getBoozeOffers();
     }
 
@@ -75,20 +79,29 @@ export default function AutomaticLocationDisplay({ navigation }) {
         text = JSON.stringify(location);
     }
 
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text>
-          {text}
-        </Text>
-        {location ? <Text>LAT: {location.coords.latitude}</Text> : <Text>loading...</Text>}
-        <FlatList
-        data={boozeOffers}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
-      />
-      </SafeAreaView>
-    );
+    if(boozeOffers){
+        return (
+        <SafeAreaView>
+            <Text>
+            Booze in Your Area:
+            </Text>
+            <FlatList
+            data={boozeOffers}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={selectedId}
+        />
+        </SafeAreaView>
+        );
+    } else { 
+        return (
+            <SafeAreaView style={styles.container}>
+                <Text>
+               Loading...
+                </Text>
+            </SafeAreaView>
+            );
+    }
   }
   
 const styles = StyleSheet.create({
