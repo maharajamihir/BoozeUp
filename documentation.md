@@ -55,8 +55,10 @@ Despite of the questionable Software Engineering course we took this semester, w
 - BE: Search based on latlong in database, optionally conversion from city to lat-long
 3. Toggle between Map view and List view
 4. In List view, enable clicking on the Booze and getting redirected to a screen with more info about that offer.
-5. Add parameters *name* and *description* to booze-offers 
-6. booze-offers : make *booze_type* an enum by implementing dropdown or so.
+5. Upload Offer Screen:
+    5.1. Add parameters *name* and *description* to booze-offers (also in Database and BE)
+    5.2. make *booze_type* an enum by implementing dropdown or so. 
+    5.3. Get userlocation instead of manually entering location
 ### Sprint 4:
 1. Design a clean UI or simplistic design and make screens a bit more usable
 2. Test for possible inputs and either prevent illegal inputs or handle wrong inputs nicely
