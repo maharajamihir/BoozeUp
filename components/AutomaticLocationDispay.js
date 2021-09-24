@@ -3,7 +3,7 @@ import { StyleSheet, Text, SafeAreaView, Button, TouchableOpacity, FlatList} fro
 import { LocationContext } from '../services/LocationContext';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+  <TouchableOpacity onPress={onPress} style={[styles.box, backgroundColor]}>
     <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price}€</Text>
    {item.distance ? 
    <Text style={[styles.booze_type, textColor]}>only {item.distance} away!</Text> :
@@ -95,6 +95,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center' 
     },
+    box: {
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+  },
     input: {
         height: 50,
         width: 300,

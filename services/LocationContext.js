@@ -9,9 +9,7 @@ export const LocationContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const requestLocation = () => {
-    setIsLoading(true);
     setError(null);
-    setLocation(null);
 
     (async () => {
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -19,9 +17,14 @@ export const LocationContextProvider = ({ children }) => {
             setError('Permission to access location was denied');
             return;
         }
-
+        setIsLoading(true);
+        setLocation(null);
+        
+        console.log("Recieved permission from user");
         // TODO: man kann auch Location.getCurrentPositionAsync nehmen, dann genauer aber langsamer
         let location = await Location.getLastKnownPositionAsync({});
+        console.log("Recieved location from user");
+        console.log(JSON.stringify(location));
         setLocation(location);
         
     })();
