@@ -64,5 +64,5 @@ Despite of the questionable Software Engineering course we took this semester, w
 ### Sprint 4:
 1. Design a clean UI or simplistic design and make screens a bit more usable
 2. Test for possible inputs and either prevent illegal inputs or handle wrong inputs nicely
-...
+3. ...
 ## Testing
