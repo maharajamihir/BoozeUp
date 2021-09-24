@@ -9,14 +9,15 @@ Despite of the questionable Software Engineering course we took this semester, w
 
 0. Sign up or Log in to profile (login screen)
 1. Buyers have to enter:
-    - location
+    - location (from device)
     - radius
-    - can search for booze (per supply) or ping people in radius for booze (per demand)
+    - can search for booze in radius for booze 
+    - optionally filter for booze-types
 
 4. Sellers can put Ads with:
     - Type of Booze
     - Price
-    - Location (optionally get it from Device location)
+    - Location (get it from Device location)
     -> optionally show address on ad, or on request
     - optionally add photo
     - Time range where booze available
@@ -36,6 +37,7 @@ Despite of the questionable Software Engineering course we took this semester, w
 5. Implement browse functionality based on location, wanted booze (basic, without lat long)
 6. Deploy on Heroku
 #### Recap
+- All backlog items implemented successfully.
 - Minimal verion of API working on localhost
 - React Native project Navigation initialized
 - Database setup (enter database with command "heroku pg:psql"
@@ -45,7 +47,7 @@ Despite of the questionable Software Engineering course we took this semester, w
 1. Make basic Login Screen and let User log in with sending data to backend and checking data in database
 2. Make basic Registration screen with sending data to backend and checking data in database
 3. Make token and send it to FE after Log in/ Registration
-4. Implement Location based search via zipcode and fetch all booze offers in that era from backend
+4. Implement Location based search via zipcode and fetch all booze offers in that area from backend
 5. Let user add a booze-offer and display his offers after successfully adding offer to database
 6. Make simple Profile screen where all of user data is displayed (username, email, phonenumber, token) by sending token to BE and getting getting data
 ### Sprint 3:
@@ -56,9 +58,9 @@ Despite of the questionable Software Engineering course we took this semester, w
 3. Toggle between Map view and List view
 4. In List view, enable clicking on the Booze and getting redirected to a screen with more info about that offer.
 5. Upload Offer Screen:
-    5.1. Add parameters *name* and *description* to booze-offers (also in Database and BE)
-    5.2. make *booze_type* an enum by implementing dropdown or so. 
-    5.3. Get userlocation instead of manually entering location
+    - 5.1. Add parameters *name* and *description* to booze-offers (also in Database and BE)
+    - 5.2. make *booze_type* an enum by implementing dropdown or so. 
+    - 5.3. Get userlocation instead of manually entering location
 ### Sprint 4:
 1. Design a clean UI or simplistic design and make screens a bit more usable
 2. Test for possible inputs and either prevent illegal inputs or handle wrong inputs nicely
