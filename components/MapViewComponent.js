@@ -1,29 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { StyleSheet, Text, SafeAreaView, View} from 'react-native';
-import * as Location from 'expo-location';
+import { LocationContext } from '../services/LocationContext';
 
 export default function MapViewComponent({ navigation }) {
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);    
-
-    useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-
-            // TODO: man kann auch Location.getCurrentPositionAsync nehmen, dann genauer aber langsamer
-            let location = await Location.getLastKnownPositionAsync({});
-            setLocation(location);
-            
-        })();
-    }, []);
+    const {location, error} = useContext(LocationContext);  
 
     let text = 'Waiting..';
-    if (errorMsg) {
-        text = errorMsg;
+    if (error) {
+        text = error;
     } else if (location) {
         text = JSON.stringify(location);
     }
