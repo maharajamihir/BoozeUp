@@ -25,7 +25,7 @@ export default function AutomaticLocationDisplay({ navigation }) {
             // TODO: man kann auch Location.getCurrentPositionAsync nehmen, dann genauer aber langsamer
             let location = await Location.getLastKnownPositionAsync({});
             setLocation(location);
-            getBoozeOffers();
+            
         })();
     }, []);
 
@@ -53,7 +53,9 @@ export default function AutomaticLocationDisplay({ navigation }) {
                 'Content-Type': 'application/json; charset=utf-8'
               },  
             body: JSON.stringify({
-                    location : location,
+                    //location : location,
+                    latitude : location.coords.latitude,
+                    longitude : location.coords.longitude,
                 })
         }).then(response => response.json())
         .then(data => setboozeOffers(data))
@@ -61,6 +63,10 @@ export default function AutomaticLocationDisplay({ navigation }) {
         .catch(error => console.log(error))
         .then(l => {return l});
       }
+
+      if(location){
+        getBoozeOffers();
+    }
 
     let text = 'Waiting..';
     if (errorMsg) {
@@ -74,6 +80,7 @@ export default function AutomaticLocationDisplay({ navigation }) {
         <Text>
           {text}
         </Text>
+        {location ? <Text>LAT: {location.coords.latitude}</Text> : <Text>loading...</Text>}
         <FlatList
         data={boozeOffers}
         renderItem={renderItem}
