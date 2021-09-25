@@ -7,7 +7,7 @@ import RNPickerSelect from 'react-native-picker-select';
 
 export default function AddBoozeScreen({ navigation }) {
   const {user} = useContext(AuthenticationContext);
-  const {uploadOffer,userOffers,setUserOffers, error} = useContext(BoozeOfferContext);
+  const {uploadOffer,userOffers, error} = useContext(BoozeOfferContext);
 
   const {location } = React.useContext(LocationContext);
   const [booze, setBooze] = React.useState();
