@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, SafeAreaView, Button, TouchableOpacity, FlatList} from 'react-native';
-import * as Location from 'expo-location';
+import { LocationContext } from '../services/LocationContext';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+  <TouchableOpacity onPress={onPress} style={[styles.box, backgroundColor]}>
     <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price}€</Text>
    {item.distance ? 
    <Text style={[styles.booze_type, textColor]}>only {item.distance} away!</Text> :
@@ -15,23 +15,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 export default function AutomaticLocationDisplay({ navigation }) {
     const [selectedId, setSelectedId] = useState(null);
     const [boozeOffers, setboozeOffers] = useState(null);
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);    
-
-    useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-
-            // TODO: man kann auch Location.getCurrentPositionAsync nehmen, dann genauer aber langsamer
-            let location = await Location.getLastKnownPositionAsync({});
-            setLocation(location);
-            
-        })();
-    }, []);
+    const {location, error} = useContext(LocationContext);  
 
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "#000000" : "#ffffff";
@@ -73,8 +57,8 @@ export default function AutomaticLocationDisplay({ navigation }) {
     }
 
     let text = 'Waiting..';
-    if (errorMsg) {
-        text = errorMsg;
+    if (error) {
+        text = error;
     } else if (location) {
         text = JSON.stringify(location);
     }
@@ -111,6 +95,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center' 
     },
+    box: {
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+  },
     input: {
         height: 50,
         width: 300,
