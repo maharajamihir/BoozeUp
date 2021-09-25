@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { StyleSheet, Text, SafeAreaView, View} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, Dimensions} from 'react-native';
 import { LocationContext } from '../services/LocationContext';
+import MapView, { Marker } from 'react-native-maps';
 
 export default function MapViewComponent({ navigation }) {
     const {location, error} = useContext(LocationContext);  
@@ -13,17 +14,30 @@ export default function MapViewComponent({ navigation }) {
     }
 
     return (
-      <SafeAreaView style={styles.container}>
-        <Text>
-          {text}
-        </Text>
-        {location ? 
         <View>
-            <Text>Latitude: {location.coords.latitude}</Text>
-            <Text>Longitude: {location.coords.latitude}</Text>
+            {location ?
+            <View>
+                <MapView
+                style={styles.map}
+                initialRegion={{
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                    latitudeDelta: 0.004757,
+                    longitudeDelta: 0.006866,
+                }}
+                >
+                  <Marker
+                    coordinate={{ latitude : location.coords.latitude, longitude : location.coords.longitude }}
+                  />
+                </MapView>
+            {/*
+                <Text>Latitude: {location.coords.latitude}</Text>
+                <Text>Longitude: {location.coords.latitude}</Text>
+
+            */}
+            </View>
+            : <Text>Loading...</Text>}
         </View>
-         : <Text>Loading...</Text>}
-      </SafeAreaView>
     );
   }
   
@@ -42,4 +56,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
     },
+    map: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+    }
 });
