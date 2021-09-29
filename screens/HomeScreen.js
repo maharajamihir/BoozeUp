@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Switch, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import MapViewComponent from '../components/MapViewComponent';
-import AutomaticLocationDisplay from '../components/AutomaticLocationDispay';
+import AutomaticLocationDisplay from '../components/ListViewComponent';
 
 
 export default function HomeScreen({ navigation }) {
