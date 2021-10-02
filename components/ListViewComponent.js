@@ -1,19 +1,20 @@
 import React, {useState, useContext} from 'react';
-import { StyleSheet, Text, SafeAreaView, Button, TouchableOpacity, FlatList} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, TouchableOpacity, FlatList} from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 import { LocationContext } from '../services/LocationContext';
+import BoozeDisplay from './BoozeDisplay';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.box, backgroundColor]}>
     <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price}€</Text>
-   {item.distance ? 
-   <Text style={[styles.booze_type, textColor]}>only {item.distance} away!</Text> :
-   <Text style={[styles.booze_type, textColor]}>Check it out now!</Text>
-   }
+    <Text style={[styles.booze_type, textColor]}>Check it out now!</Text>
+   
   </TouchableOpacity>
 );
 
-export default function AutomaticLocationDisplay({ navigation }) {
-    const [selectedId, setSelectedId] = useState(null);
+const ListView = ({ navigation }) => {
+  const [selectedId, setSelectedId] = useState(null);
     const [boozeOffers, setboozeOffers] = useState(null);
     const {location, error} = useContext(LocationContext);  
 
@@ -47,20 +48,13 @@ export default function AutomaticLocationDisplay({ navigation }) {
                 })
         }).then(response => response.json())
         .then(data => setboozeOffers(data))
-        .then(booze => console.log("Received data: " + booze))
+        .then(booze => console.log("Received data for Booze List: " + JSON.stringify(booze)))
         .catch(error => console.log(error))
         .then(l => {return l});
       }
 
       if(location && !boozeOffers){
         getBoozeOffers();
-    }
-
-    let text = 'Waiting..';
-    if (error) {
-        text = error;
-    } else if (location) {
-        text = JSON.stringify(location);
     }
 
     if(boozeOffers){
@@ -86,7 +80,17 @@ export default function AutomaticLocationDisplay({ navigation }) {
             </SafeAreaView>
             );
     }
+}
+
+const Stack = createNativeStackNavigator();
+
+const AutomaticLocationDisplay = ({ navigation })  => {
+    return (
+      <ListView />
+    );
   }
+
+export default AutomaticLocationDisplay;
   
 const styles = StyleSheet.create({
     container:

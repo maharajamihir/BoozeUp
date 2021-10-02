@@ -26,7 +26,7 @@ const LoginStack = createNativeStackNavigator();
 
 export default function LoginContainer() {
     return (
-      <NavigationContainer independent={true}>
+      <NavigationContainer>
         <LoginStack.Navigator>
         <LoginStack.Screen name="Please Login" component={AuthentificationScreen} />
         <LoginStack.Screen name="Login" component={LoginScreen} />

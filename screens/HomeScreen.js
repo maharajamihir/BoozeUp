@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, Switch, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import MapViewComponent from '../components/MapViewComponent';
 import AutomaticLocationDisplay from '../components/ListViewComponent';
+import NavigableList from '../components/BoozeOffers';
 
 
 export default function HomeScreen({ navigation }) {
@@ -22,7 +23,7 @@ export default function HomeScreen({ navigation }) {
             /> 
 
         <View style={styles.container}>
-        {toggleButtonPressed ? <MapViewComponent /> : <AutomaticLocationDisplay />}
+        {toggleButtonPressed ? <MapViewComponent /> : <NavigableList />}
         </View>
     </SafeAreaView>
     );

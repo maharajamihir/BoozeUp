@@ -21,7 +21,7 @@ export default function AppContainer() {
 
   if(gotLocation){
   return (
-    <NavigationContainer independent={true}>
+    <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Add Booze" component={AddBoozeScreen} />
