@@ -47,7 +47,7 @@ export default function AutomaticLocationDisplay({ navigation }) {
                 })
         }).then(response => response.json())
         .then(data => setboozeOffers(data))
-        .then(booze => console.log("Recieved data: " + booze))
+        .then(booze => console.log("Received data: " + booze))
         .catch(error => console.log(error))
         .then(l => {return l});
       }
@@ -74,7 +74,7 @@ export default function AutomaticLocationDisplay({ navigation }) {
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
             extraData={selectedId}
-        />
+            />
         </SafeAreaView>
         );
     } else { 
