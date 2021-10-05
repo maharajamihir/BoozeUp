@@ -3,10 +3,11 @@ import React, { useState, createContext } from 'react';
 export const BoozeOfferContext = createContext();
 
 export const BoozeOfferContextProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
+const [isLoading, setIsLoading] = useState(false);
 const [userOffers, setUserOffers] = useState(null);
 const [userData, setUserData] = useState(null);
 const [error, setError] = useState(null);
+const [uploaded, setUploaded] = useState(false);
 
 const fetchUserData = (token) => {
   console.log("Fetching Data!!")
@@ -42,7 +43,7 @@ const fetchUserData = (token) => {
 
 
 
-const uploadOffer = (token, booze, price, location) => {
+const uploadOffer = (token, booze, price, location, name, description) => {
   setIsLoading(true);
   setError(null);
   //const url = 'http://localhost:5000/make-offer?'
@@ -56,8 +57,11 @@ const uploadOffer = (token, booze, price, location) => {
           body: JSON.stringify({
                   token : token,
                   "booze-type" : booze,
-                  location : location,
-                  price : price
+                  latitude : location.coords.latitude,
+                  longitude : location.coords.longitude,
+                  price : price,
+                  name : name,
+                  description : description
               })
       }).then(response => response.json())
       .then(data => {
@@ -74,12 +78,14 @@ const uploadOffer = (token, booze, price, location) => {
     
 };
 
+
   return (
     <BoozeOfferContext.Provider
       value={{
         isLoading,
         userOffers,
         userData,
+        uploaded,
         error,
         fetchUserData,
         uploadOffer
