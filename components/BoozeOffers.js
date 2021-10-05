@@ -72,16 +72,14 @@ const NavigableList = (
 ) => {
 
     return (
-        <NavigationContainer independent={true}>
           <Stack.Navigator>
             <Stack.Screen
-              name="Home"
+              name="List"
               component={ListView}
-              options={{ title: 'Welcome' }}
+              options={{ headerShown: false }}
             />
             <Stack.Screen name="Profile" component={BoozeDisplay} />
           </Stack.Navigator>
-        </NavigationContainer>
       );
 }
 
