@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Switch, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import MapViewComponent from '../components/MapViewComponent';
-import AutomaticLocationDisplay from '../components/ListViewComponent';
+import NavigableList from '../components/ListViewComponent';
 
 
 export default function HomeScreen({ navigation }) {
@@ -9,23 +9,41 @@ export default function HomeScreen({ navigation }) {
     const toggleButton = () => {
         setToggleButtonPressed(!toggleButtonPressed);
     }
-    return (
-    <SafeAreaView style={styles.maincontainer}>
-
-            <Switch
-                style={styles.button}
-                value={toggleButtonPressed}
-                trackColor={{ false: "#767577", true: "#81b0ff" }}
-                thumbColor={toggleButtonPressed ? "#f5dd4b" : "#f4f3f4"}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleButton}
-            /> 
-
-        <View style={styles.container}>
-        {toggleButtonPressed ? <MapViewComponent /> : <AutomaticLocationDisplay />}
-        </View>
-    </SafeAreaView>
-    );
+    if(toggleButtonPressed){
+        return (
+            <SafeAreaView style={styles.maincontainer}>
+        
+                    <Switch
+                        style={styles.button}
+                        value={toggleButtonPressed}
+                        trackColor={{ false: "#767577", true: "#81b0ff" }}
+                        thumbColor={toggleButtonPressed ? "#f5dd4b" : "#f4f3f4"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={toggleButton}
+                    /> 
+        
+                <View style={styles.container}>
+                    <MapViewComponent />
+                </View>
+            </SafeAreaView>
+            );
+    } else {
+        return (
+            <SafeAreaView style={styles.maincontainer}>
+        
+                    <Switch
+                        style={styles.button}
+                        value={toggleButtonPressed}
+                        trackColor={{ false: "#767577", true: "#81b0ff" }}
+                        thumbColor={toggleButtonPressed ? "#f5dd4b" : "#f4f3f4"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={toggleButton}
+                    /> 
+                <NavigableList />
+            </SafeAreaView>
+            );
+    }
+    
   }
   
 const styles = StyleSheet.create({
