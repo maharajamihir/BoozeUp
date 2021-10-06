@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
-import { View, Text} from "react-native";
+import { View, Text, InteractionManager} from "react-native";
 import { AuthenticationContext } from "../services/AuthenticationContext";
 
-const BoozeDisplay = () => {
+const BoozeDisplay = ({ route, navigation }) => {
 
   const { user } = useContext(AuthenticationContext);
-
+  const { item } = route.params;
   return (
     <View>
       <Text>
-        Your Booze will be displayed here
+        {item.booze_type}
       </Text>
     </View>
   );

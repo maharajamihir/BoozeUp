@@ -25,7 +25,10 @@ const ListView = ({ navigation }) => {
         return (
           <Item
             item={item}
-            onPress={() => setSelectedId(item.id)}
+            onPress={() => {
+              setSelectedId(item.id);
+              navigation.navigate('Booze', { item: item});
+            }}
             backgroundColor={{ backgroundColor }}
             textColor={{ color }}
           />
@@ -84,13 +87,27 @@ const ListView = ({ navigation }) => {
 
 const Stack = createNativeStackNavigator();
 
-const AutomaticLocationDisplay = ({ navigation })  => {
-    return (
-      <ListView />
-    );
-  }
+const NavigableList = (
+  data,
+  renderItem,
+  renderItemScreen,
+  listScreenOptions,
+  itemScreenOptions
+) => {
 
-export default AutomaticLocationDisplay;
+  return (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="List"
+            component={ListView}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="Booze" component={BoozeDisplay} />
+        </Stack.Navigator>
+    );
+}
+
+export default NavigableList;
   
 const styles = StyleSheet.create({
     container:
