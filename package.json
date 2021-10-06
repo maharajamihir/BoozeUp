@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
+    "@react-native-picker/picker": "1.16.1",
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
@@ -18,7 +19,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-    "react-native-maps": "0.28.0",
+    "react-native-maps": "^0.29.3",
+    "react-native-picker-select": "^8.0.4",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0"
   },
