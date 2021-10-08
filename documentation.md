@@ -62,7 +62,7 @@ Despite of the questionable Software Engineering course we took this semester, w
 ### Sprint 3:
 
 - [ ] 18+ check in registration
-  - [X] Implement location based search via latitude and logitude instead of city name (optionally convert city to lat-long)
+- [X] Implement location based search via latitude and logitude instead of city name (optionally convert city to lat-long)
   - [X] APP: Map integration 
   - [X] getting location (lat-long) from user + integration to backend service
   - [X] List: Sort offers after how close they are 
