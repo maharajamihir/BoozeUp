@@ -9,6 +9,7 @@ export default function HomeScreen({ navigation }) {
     const toggleButton = () => {
         setToggleButtonPressed(!toggleButtonPressed);
     }
+
     if(toggleButtonPressed){
         return (
             <SafeAreaView style={styles.maincontainer}>

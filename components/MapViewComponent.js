@@ -15,6 +15,9 @@ export default function MapViewComponent({ navigation }) {
 
     return (
         <View>
+            <SafeAreaView style={styles.maincontainer}>
+            </SafeAreaView>
+
             {location ?
             <View>
                 <MapView
@@ -42,6 +45,10 @@ export default function MapViewComponent({ navigation }) {
   }
   
 const styles = StyleSheet.create({
+    maincontainer:
+    {
+        marginTop: 100, 
+    },
     container:
     {
         flex: 1,
