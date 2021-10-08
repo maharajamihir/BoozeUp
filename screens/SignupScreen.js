@@ -56,26 +56,24 @@ export default function LoginScreen() {
           onChangeText={repeatPassword}
           secureTextEntry={true}
         />
-        {isLoading ? <Text>Logging in... Please wait...</Text> : null}
-        {(error && error[1] == 400) ? <Text>User with this email already exists.</Text> : null}
-      </View>{doesPasswordMatch ?
-        <Button
-          title="Signup"
-          onPress={() => onRegister(username.trim(), number, email.trim(), password.trim())}
-        /> :
-        <Text>Please enter a password and ensure it matches the repeated password</Text>
-      }
-
-      <View style={{ flexDirection: 'row', alignContent: 'center' }}>
+         <View style={{ flexDirection: 'row', alignContent: 'center' }}>
         <RadioButton
           status={checked === true ? 'checked' : 'unchecked'}
           onPress={() => checked === false ? setChecked(true) : setChecked(false)}
         />
         <View style={{ alignSelf: 'center' }}>
-          <Text>Yes, I am 18+ years old:</Text>
+          <Text>I hereby confirm, that I am 18+ years old</Text>
         </View>
       </View>
-
+        {isLoading ? <Text>Logging in... Please wait...</Text> : null}
+        {(error && error[1] == 400) ? <Text>User with this email already exists.</Text> : null}
+      </View>{(doesPasswordMatch && checked) ?
+        <Button
+          title="Signup"
+          onPress={() => onRegister(username.trim(), number, email.trim(), password.trim())}
+        /> :
+        <Text>Please fill out all the fields</Text>
+      }
     </View>
   );
 }
