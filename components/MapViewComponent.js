@@ -1,14 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { StyleSheet,Switch, Text, SafeAreaView, View, Dimensions} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, Dimensions} from 'react-native';
 import { LocationContext } from '../services/LocationContext';
 import MapView, { Marker } from 'react-native-maps';
 
 export default function MapViewComponent({ navigation }) {
-    const [toggleButtonPressed, setToggleButtonPressed] = React.useState(false);
-    const toggleButton = () => {
-        setToggleButtonPressed(!toggleButtonPressed);
-    }
-
     const {location, error} = useContext(LocationContext);  
 
     let text = 'Waiting..';
