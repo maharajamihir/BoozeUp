@@ -12,7 +12,7 @@ export default function LoginScreen() {
   const [doesPasswordMatch, setDoesPasswordMatch] = React.useState(false);
   const { onRegister, error, isLoading } = useContext(AuthenticationContext);
 
-  const [checked, setChecked] = React.useState('first');
+  const [checked, setChecked] = React.useState(false);
 
   const repeatPassword = (repeatedPassword) => {
     if (repeatedPassword === password && password !== '') {
@@ -68,8 +68,8 @@ export default function LoginScreen() {
 
       <View style={{ flexDirection: 'row', alignContent: 'center' }}>
         <RadioButton
-          status={checked === 'second' ? 'checked' : 'unchecked'}
-          onPress={() => checked === 'first' ? setChecked('second') : setChecked('first')}
+          status={checked === true ? 'checked' : 'unchecked'}
+          onPress={() => checked === false ? setChecked(true) : setChecked(false)}
         />
         <View style={{ alignSelf: 'center' }}>
           <Text>Yes, I am 18+ years old:</Text>
