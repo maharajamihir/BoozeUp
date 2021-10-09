@@ -103,14 +103,14 @@ export default function AddBoozeScreen({ navigation }) {
            {error ? 
            <View>
               <Text>An Error occured: {JSON.stringify(error)}</Text>
-              {<Button 
+              {<BoozeUpButton 
                 title="Try again"
                 onPress={onRefresh}
               />}
            </View>: 
            <View style={styles.container}>
               <Text>Your offer was successfully uploaded!</Text>
-              {<Button 
+              {<BoozeUpButton 
                 title="Upload another offer"
                 onPress={onRefresh}
               />}
