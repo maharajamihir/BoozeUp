@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Button, Text, View, TextInput, StyleSheet } from 'react-native';
 import { AuthenticationContext } from '../services/AuthenticationContext';
+import { BoozeUpButton, buttonStyles } from '../styles/ButtonStyles';
+import { textStyles } from '../styles/TextStyles';
 
 
 export default function LoginScreen() {
@@ -10,42 +12,31 @@ export default function LoginScreen() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
        
-                <Text>Please Login to BoozeUp!</Text>
+                <Text style={textStyles.title}>Please Login to BoozeUp!</Text>
                 <View>
                     
-                    <Text>Email:</Text>
                         <TextInput 
-                            style={styles.input}
+                            style={buttonStyles.box}
                             onChangeText={setEmail}
                             autoCompleteType="email"
                             keyboardType="email-address"
+                            placeholder="Email"
                         />
-                        <Text>Password:</Text>
                         <TextInput 
-                            style={styles.input}
+                             style={buttonStyles.box}
                             onChangeText={setPassword}
                             secureTextEntry={true}
                             autoCompleteType="password"
+                            placeholder="Password"
                         />
-                        {isLoading ? <Text>Logging in... Please wait...</Text> : null}
                         {(error && error[1] == 400) ? <Text>User not found! Please check your login credentials.</Text> : null}
                 </View>
                 {(email && password) ?
-                <Button
+                <BoozeUpButton
                 title="Login"
                 onPress={() => onLogin(email.trim(),password.trim())}
+                loading={isLoading}
                 /> : null}
       </View>
     );
   }
-
-
-  const styles = StyleSheet.create({
-    input: {
-      height: 50,
-      width: 300,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
-    },
-  });

@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { Button, Text, View, TextInput, StyleSheet } from 'react-native';
 import { AuthenticationContext } from '../services/AuthenticationContext';
 import { RadioButton } from 'react-native-paper';
-
+import { BoozeUpButton, buttonStyles } from '../styles/ButtonStyles';
+import { textStyles } from '../styles/TextStyles';
 
 export default function LoginScreen() {
   const [username, setUsername] = React.useState(null);
@@ -25,36 +26,35 @@ export default function LoginScreen() {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Please Login to BoozeUp!</Text>
+      <Text style={textStyles.title}>Please SignUp to BoozeUp!</Text>
       <View>
-        <Text>Username:</Text>
-        <TextInput
-          style={styles.input}
+         <TextInput
+          style={buttonStyles.box}
           onChangeText={setUsername}
+          placeholder="Username"
         />
-        <Text>Email:</Text>
-        <TextInput
-          style={styles.input}
+          <TextInput
+          style={buttonStyles.box}
           onChangeText={setEmail}
+          placeholder="Email"
         />
-        <Text>Phone Number:</Text>
-        <TextInput
-          style={styles.input}
+          <TextInput
+          style={buttonStyles.box}
           onChangeText={setNumber}
           keyboardType="number-pad"
+          placeholder="Phone Number"
         />
-        <Text>Password:</Text>
-        <Text>(Don't use your bank password. We save in plaintext)</Text>
-        <TextInput
-          style={styles.input}
+         <TextInput
+          style={buttonStyles.box}
           onChangeText={setPassword}
           secureTextEntry={true}
+          placeholder="Password"
         />
-        <Text>Repeat Password:</Text>
         <TextInput
-          style={styles.input}
+          style={buttonStyles.box}
           onChangeText={repeatPassword}
           secureTextEntry={true}
+          placeholder="Repeat Password"
         />
          <View style={{ flexDirection: 'row', alignContent: 'center' }}>
         <RadioButton
@@ -68,9 +68,10 @@ export default function LoginScreen() {
         {isLoading ? <Text>Logging in... Please wait...</Text> : null}
         {(error && error[1] == 400) ? <Text>User with this email already exists.</Text> : null}
       </View>{(doesPasswordMatch && checked) ?
-        <Button
+        <BoozeUpButton
           title="Signup"
           onPress={() => onRegister(username.trim(), number, email.trim(), password.trim())}
+          loading={isLoading}
         /> :
         <Text>Please fill out all the fields</Text>
       }

@@ -4,16 +4,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignupScreen from './SignupScreen'
 import LoginScreen from './LoginScreen'
+import { BoozeUpButton } from "../styles/ButtonStyles";
   
 function AuthentificationScreen({ navigation }) {
 
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Button
+                <BoozeUpButton
                 title="Login"
                 onPress={() => navigation.navigate('Login')}
                 />
-                <Button
+                <BoozeUpButton
                 title="Signup"
                 onPress={() => navigation.navigate('Signup')}
                 />
