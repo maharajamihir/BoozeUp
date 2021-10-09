@@ -71,7 +71,10 @@ export default function AddBoozeScreen({ navigation }) {
             style={{
               padding: 10,
               borderWidth: 1,
-              width: 300,
+              width: 350,
+      margin: 12,
+      borderRadius: 25,
+      fontSize: 20,
               }}
             onChangeText={(description) => setDescription(description)}
             placeholder="Description"
