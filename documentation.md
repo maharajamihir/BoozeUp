@@ -61,14 +61,14 @@ Despite of the questionable Software Engineering course we took this semester, w
 
 ### Sprint 3:
 
-- [ ] 18+ check in registration
+- [X] 18+ check in registration
 - [X] Implement location based search via latitude and logitude instead of city name (optionally convert city to lat-long)
   - [X] APP: Map integration 
   - [X] getting location (lat-long) from user + integration to backend service
   - [X] List: Sort offers after how close they are 
   - [X] BE: Search based on latlong in database, optionally conversion from city to lat-long
 
-- [ ] Toggle between Map view and List view
+- [X] Toggle between Map view and List view
 - [X] In List view, enable clicking on the Booze and getting redirected to a screen with more info about that offer.
 - [X] Upload Offer Screen:
   - [X] Add parameters *name* and *description* to booze-offers (also in Database and BE)
@@ -78,8 +78,7 @@ Despite of the questionable Software Engineering course we took this semester, w
 ### Sprint 4:
 
 - [ ] Design a clean UI or simplistic design and make screens a bit more usable
-  - [ ] create stylesheets for Headings, Paragraphs
-- [ ] Test for possible inputs and either prevent illegal inputs or handle wrong inputs nicely
+  - [X] create stylesheets for Headings, Paragraphs
 - [ ] Add Boozeoffers to Map component
   - [ ] fetch boozeoffers for list view and map view once only
   - [ ] Add pins everywhere where Boozeoffers are
@@ -90,5 +89,10 @@ Despite of the questionable Software Engineering course we took this semester, w
   - [ ] Add "My offers" to Drawer navigator
   - [ ] Add "Settings" to Drawer
   - [ ] Add "Messages" to Drawer
+- Backend:
+  - [ ] Make API endpoint which takes Userid and returns all Boozeoffers of this user
+  - [ ] Make API endpoint which takes USerid and returns id, username, email, phonenumber
+  - [ ]
 
 ## Testing
+While testing if you notice a bug, create an issue, so that we can handle it properly
