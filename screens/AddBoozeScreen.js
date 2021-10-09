@@ -4,7 +4,8 @@ import { BoozeOfferContext } from '../services/BoozeOfferContext';
 import { AuthenticationContext } from '../services/AuthenticationContext';
 import { LocationContext } from '../services/LocationContext';
 import SelectDropdown from 'react-native-select-dropdown'
-import { BoozeUpButton } from '../styles/ButtonStyles';
+import { BoozeUpButton, buttonStyles } from '../styles/ButtonStyles';
+import { textStyles } from '../styles/TextStyles';
 
 export default function AddBoozeScreen({ navigation }) {
   const {user} = useContext(AuthenticationContext);
@@ -54,13 +55,13 @@ export default function AddBoozeScreen({ navigation }) {
             }}
         />
         <TextInput 
-            style={styles.input}
+            style={buttonStyles.box}
             onChangeText={setPrice}
             placeholder="Price *"
             keyboardType="number-pad"
         />
         <TextInput 
-            style={styles.input}
+            style={buttonStyles.box}
             onChangeText={(name) => setName(name)}
             placeholder="Name"
         />
