@@ -52,7 +52,7 @@ const ListView = ({ navigation }) => {
                 })
         }).then(response => response.json())
         .then(data => setboozeOffers(data))
-        .then(booze => console.log("Received data for Booze List: " + JSON.stringify(booze)))
+        .then(booze => console.log("Received data for Booze List: " + JSON.stringify(boozeOffers[0])))
         .catch(error => console.log(error))
         .then(l => {return l});
       }
