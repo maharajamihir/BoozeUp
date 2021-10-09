@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react';
-import { StyleSheet, Text, SafeAreaView, TouchableOpacity, FlatList} from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, SafeAreaView, TouchableOpacity, FlatList, RefreshControl} from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { LocationContext } from '../services/LocationContext';
 import BoozeDisplay from './BoozeDisplay';
+import { textStyles } from '../styles/TextStyles';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.box, backgroundColor]}>
@@ -60,13 +61,24 @@ const ListView = ({ navigation }) => {
         getBoozeOffers();
     }
 
+    const onRefresh = () => {
+      setboozeOffers(null);
+      getBoozeOffers();
+    }
+
     if(boozeOffers){
         return (
-        <SafeAreaView>
-            <Text>
+        <SafeAreaView style={styles.list}>
+            <Text style={textStyles.title}>
             Booze in Your Area:
             </Text>
             <FlatList
+            refreshControl={
+                <RefreshControl
+                  refreshing={!boozeOffers}
+                  onRefresh={onRefresh}
+                />
+              }
             data={boozeOffers}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
@@ -77,9 +89,7 @@ const ListView = ({ navigation }) => {
     } else { 
         return (
             <SafeAreaView style={styles.container}>
-                <Text>
-               Loading...
-                </Text>
+                <ActivityIndicator size="large" color="#000000" />
             </SafeAreaView>
             );
     }
@@ -128,4 +138,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
     },
+    list: {
+      marginBottom: 75,
+    }
 });
