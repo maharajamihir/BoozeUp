@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { StyleSheet, TextInput, Text, View , Button} from 'react-native';
+import { StyleSheet, TextInput, Text, View , Button, ScrollView, RefreshControl} from 'react-native';
 import { BoozeOfferContext } from '../services/BoozeOfferContext';
 import { AuthenticationContext } from '../services/AuthenticationContext';
 import { LocationContext } from '../services/LocationContext';
-import RNPickerSelect from 'react-native-picker-select';
+import SelectDropdown from 'react-native-select-dropdown'
+import { BoozeUpButton } from '../styles/ButtonStyles';
 
 export default function AddBoozeScreen({ navigation }) {
   const {user} = useContext(AuthenticationContext);
@@ -14,28 +15,43 @@ export default function AddBoozeScreen({ navigation }) {
   const [price, setPrice] = React.useState(null);
   const [name, setName] = React.useState(null);
   const [description, setDescription] = React.useState(null);
+  const [uploaded, setUploaded] = React.useState(false);
 
-  if(!userOffers){
+  const items=["Beer", "Wine", "Vodka", "Martini", "Whiskey", "Gin"];
+
+  const onRefresh = () => {
+    setBooze(null);
+    setPrice(null);
+    setName(null);
+    setDescription(null);
+    setUploaded(false);
+  }
+
+  if(!uploaded){
     return (
       <View style={styles.container}>  
 
-        <RNPickerSelect
-            style={{ inputAndroid: { color: 'black' } }}
-            onValueChange={(value) => {
+        <SelectDropdown
+            onSelect={(value) => {
               setBooze(value);
               console.log(value);
               console.log(booze);
             }}
             value={booze}
            // placeholder={{ label: 'Select a type of Booze', value: null }}
-            items={[
-                { label: 'Beer', value: 'Beer' },
-                { label: 'Wine', value: 'Wine' },
-                { label: 'Vodka', value: 'Vodka' },
-                { label: 'Martini', value: 'Martini' },
-                { label: 'Whiskey', value: 'Whiskey' },
-                { label: 'Gin', value: 'Gin' },
-            ]}
+            
+            
+            data={items}
+            buttonTextAfterSelection={(selectedItem, index) => {
+              // text represented after item is selected
+              // if data array is an array of objects then return selectedItem.property to render after item is selected
+              return selectedItem
+            }}
+            rowTextForSelection={(item, index) => {
+              // text represented for each item in dropdown
+              // if data array is an array of objects then return item.property to represent item in dropdown
+              return item
+            }}
         />
         <TextInput 
             style={styles.input}
@@ -61,10 +77,11 @@ export default function AddBoozeScreen({ navigation }) {
         />
 
         {(location && booze && price) ? 
-        <Button
+        <BoozeUpButton
         title="Upload Offer"
         onPress={() => {
           uploadOffer(user, booze, price, location,name, description);
+          setUploaded(true);
         }}
         /> : 
         <Text>Please fill out all the required fields to upload an offer</Text>
@@ -75,22 +92,31 @@ export default function AddBoozeScreen({ navigation }) {
       else {
         return (
           <View style={styles.container}>
+           <ScrollView
+         refreshControl={
+              <RefreshControl
+                refreshing={!uploaded}
+                onRefresh={onRefresh}
+              />
+            }
+          >
            {error ? 
            <View>
               <Text>An Error occured: {JSON.stringify(error)}</Text>
-              {/*<Button 
+              {<BoozeUpButton 
                 title="Try again"
-                onPress={setUserOffers(null)}
-              />*/}
+                onPress={onRefresh}
+              />}
            </View>: 
-           <View>
+           <View style={styles.container}>
               <Text>Your offer was successfully uploaded!</Text>
-              {/*<Button 
+              {<BoozeUpButton 
                 title="Upload another offer"
-                onPress={setUserOffers(null)}
-              />*/}
+                onPress={onRefresh}
+              />}
            </View>
            }  
+           </ScrollView>
           </View>
         );
       }
