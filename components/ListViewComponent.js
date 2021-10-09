@@ -69,9 +69,7 @@ const ListView = ({ navigation }) => {
     if(boozeOffers){
         return (
         <SafeAreaView style={styles.list}>
-            <Text style={textStyles.title}>
-            Booze in Your Area:
-            </Text>
+        <Text style={textStyles.title}>Booze in your Area</Text>
             <FlatList
             refreshControl={
                 <RefreshControl
