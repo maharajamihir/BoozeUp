@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ProfileScreen from './ProfileScreen';
 import HomeScreen from './HomeScreen';
 import AddBoozeScreen from './AddBoozeScreen';
 import { LocationContext } from '../services/LocationContext';
 import LocationRequestScreen from './LocationRequestScreen';
 import { Ionicons } from '@expo/vector-icons';
+import MoreScreen from './MoreScreen';
 // https://ionic.io/ionicons
 
 const Tab = createBottomTabNavigator();
@@ -47,7 +47,9 @@ export default function AppContainer() {
           options={{ headerShown: false }}
         />
         <Tab.Screen name="Add Booze" component={AddBoozeScreen} />
-        <Tab.Screen name="More" component={ProfileScreen} />
+        <Tab.Screen name="More" component={MoreScreen}
+        options={{ headerShown: false }}
+         />
       </Tab.Navigator>
     </NavigationContainer>
   );
