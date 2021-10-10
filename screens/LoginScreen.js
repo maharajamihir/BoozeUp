@@ -21,6 +21,7 @@ export default function LoginScreen() {
                             autoCompleteType="email"
                             keyboardType="email-address"
                             placeholder="Email"
+                            autoCapitalize = 'none'
                         />
                         <TextInput 
                              style={buttonStyles.box}
