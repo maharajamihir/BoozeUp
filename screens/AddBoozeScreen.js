@@ -9,7 +9,7 @@ import { textStyles } from '../styles/TextStyles';
 
 export default function AddBoozeScreen({ navigation }) {
   const {user} = useContext(AuthenticationContext);
-  const {uploadOffer,userOffers, error} = useContext(BoozeOfferContext);
+  const {uploadOffer, error} = useContext(BoozeOfferContext);
 
   const {location } = React.useContext(LocationContext);
   const [booze, setBooze] = React.useState();

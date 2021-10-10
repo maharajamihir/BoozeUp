@@ -1,10 +1,13 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { StyleSheet, Text, SafeAreaView, View, Dimensions} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, Dimensions, Switch} from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LocationContext } from '../services/LocationContext';
 import MapView, { Marker } from 'react-native-maps';
+import { BoozeOfferContext } from '../services/BoozeOfferContext';
 
-export default function MapViewComponent({ navigation }) {
+const MapViewScreen = ({ navigation }) => {
     const {location, error} = useContext(LocationContext);  
+    const {toggleButton, toggleButtonPressed} = useContext(BoozeOfferContext);
 
     let text = 'Waiting..';
     if (error) {
@@ -16,6 +19,14 @@ export default function MapViewComponent({ navigation }) {
     return (
         <View>
             <SafeAreaView style={styles.maincontainer}>
+                    <Switch
+                        style={styles.button}
+                        value={toggleButtonPressed}
+                        trackColor={{ false: "#767577", true: "#81b0ff" }}
+                        thumbColor={toggleButtonPressed ? "#f5dd4b" : "#f4f3f4"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={toggleButton}
+                    /> 
             </SafeAreaView>
 
             {location ?
@@ -43,11 +54,28 @@ export default function MapViewComponent({ navigation }) {
         </View>
     );
   }
+
+const Stack = createNativeStackNavigator();
+
+const MapViewComponent = () => {
+
+    return (
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Map"
+              component={MapViewScreen}
+              //options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+      );
+  }
+  
+export default MapViewComponent;
   
 const styles = StyleSheet.create({
     maincontainer:
     {
-        marginTop: 100, 
+        marginTop: 10, 
     },
     container:
     {
