@@ -118,6 +118,10 @@ export default function AddBoozeScreen({ navigation }) {
                 title="Upload another offer"
                 onPress={onRefresh}
               />}
+              <BoozeUpButton 
+                title="My Offers"
+                onPress={() => navigation.navigate("My Offers")}
+              />
            </View>
            }  
            </ScrollView>
