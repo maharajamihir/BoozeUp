@@ -27,7 +27,7 @@ export const buttonStyles = StyleSheet.create({
       margin: 12,
       borderWidth: 1,
       padding: 10,
-      borderRadius: 100,
+      borderRadius: 10,
       fontSize: 20,
     },
 

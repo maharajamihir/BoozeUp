@@ -9,7 +9,7 @@ import { textStyles } from '../styles/TextStyles';
 
 export default function AddBoozeScreen({ navigation }) {
   const {user} = useContext(AuthenticationContext);
-  const {uploadOffer,userOffers, error} = useContext(BoozeOfferContext);
+  const {uploadOffer, error} = useContext(BoozeOfferContext);
 
   const {location } = React.useContext(LocationContext);
   const [booze, setBooze] = React.useState();
@@ -71,7 +71,10 @@ export default function AddBoozeScreen({ navigation }) {
             style={{
               padding: 10,
               borderWidth: 1,
-              width: 300,
+              width: 350,
+      margin: 12,
+      borderRadius: 25,
+      fontSize: 20,
               }}
             onChangeText={(description) => setDescription(description)}
             placeholder="Description"
