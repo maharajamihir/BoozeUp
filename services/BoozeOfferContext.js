@@ -8,6 +8,11 @@ const [userOffers, setUserOffers] = useState(null);
 const [userData, setUserData] = useState(null);
 const [error, setError] = useState(null);
 const [uploaded, setUploaded] = useState(false);
+const [toggleButtonPressed, setToggleButtonPressed] = React.useState(false);
+
+const toggleButton = () => {
+  setToggleButtonPressed(!toggleButtonPressed);
+}
 
 const fetchUserData = (token) => {
   console.log("Fetching Data!!")
@@ -86,9 +91,11 @@ const uploadOffer = (token, booze, price, location, name, description) => {
         userOffers,
         userData,
         uploaded,
+        toggleButtonPressed,
         error,
         fetchUserData,
-        uploadOffer
+        uploadOffer,
+        toggleButton
       }}
     >
       {children}

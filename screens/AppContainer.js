@@ -31,7 +31,7 @@ export default function AppContainer() {
               iconName = focused
                 ? 'md-home'
                 : 'md-home-outline';
-            } else if (route.name === 'Profile') {
+            } else if (route.name === 'More') {
               iconName = focused ? 'person' : 'person-outline';
             } else if (route.name === 'Add Booze') {
               iconName = focused ? 'add-circle' : 'add-circle-outline';
@@ -43,9 +43,11 @@ export default function AppContainer() {
           tabBarActiveTintColor: 'black',
           tabBarInactiveTintColor: 'gray',
         })}>
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} 
+          options={{ headerShown: false }}
+        />
         <Tab.Screen name="Add Booze" component={AddBoozeScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+        <Tab.Screen name="More" component={ProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

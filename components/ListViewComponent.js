@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, Text, SafeAreaView, TouchableOpacity, FlatList, RefreshControl } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, SafeAreaView, TouchableOpacity, FlatList, RefreshControl, Switch, ScrollView, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LocationContext } from '../services/LocationContext';
 import BoozeDisplay from './BoozeDisplay';
 import { textStyles } from '../styles/TextStyles';
+import { BoozeOfferContext } from '../services/BoozeOfferContext';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.box, backgroundColor]}>
@@ -17,8 +18,9 @@ const ListView = ({ navigation }) => {
   const [selectedId, setSelectedId] = useState(null);
   const [boozeOffers, setboozeOffers] = useState(null);
   const { location, error } = useContext(LocationContext);
+  const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
 
-  const renderItem = ({ item }) => {
+  const renderItem = ( { item }) => {
     const backgroundColor = item.id === selectedId ? "#000000" : "#ffffff";
     const color = item.id === selectedId ? 'white' : 'black';
 
@@ -67,22 +69,33 @@ const ListView = ({ navigation }) => {
 
   if (boozeOffers) {
     return (
-      <SafeAreaView style={styles.list}>
-        <Text style={textStyles.title}>
-          Booze in Your Area:
-            </Text>
-        <FlatList
+      <SafeAreaView>
+        <ScrollView
           refreshControl={
             <RefreshControl
               refreshing={!boozeOffers}
               onRefresh={onRefresh}
             />
           }
-          data={boozeOffers}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          extraData={selectedId}
-        />
+        >
+          <View style={{ flexDirection: 'row', alignContent: 'center' }}>
+            <Text style={textStyles.title}>Booze in your Area</Text>
+            <Switch
+              style={styles.button}
+              value={toggleButtonPressed}
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={toggleButtonPressed ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleButton}
+            />
+          </View>
+          <FlatList
+            data={boozeOffers}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={selectedId}
+          />
+        </ScrollView>
       </SafeAreaView>
     );
   } else {
@@ -96,20 +109,14 @@ const ListView = ({ navigation }) => {
 
 const Stack = createNativeStackNavigator();
 
-const NavigableList = (
-  data,
-  renderItem,
-  renderItemScreen,
-  listScreenOptions,
-  itemScreenOptions
-) => {
+const NavigableList = () => {
 
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="List"
         component={ListView}
-        options={{ headerShown: false }}
+      //options={{ headerShown: false }}
       />
       <Stack.Screen name="Booze" component={BoozeDisplay} />
     </Stack.Navigator>
@@ -137,7 +144,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  input: {
+    height: 50,
+    width: 300,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
   list: {
-    marginBottom: 75,
-  }
+    // marginBottom: 75,
+  },
+  button: {
+    left: 80,
+
+  },
 });
