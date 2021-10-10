@@ -12,7 +12,7 @@ const BoozeDisplay = ({ route, navigation }) => {
   const { item , dis} = route.params;
 
   const markers = [
-    { name:"user", key: 0, id: "0", latitude: location.coords.latitude, longitude: location.coords.longitude },
+    //{ name:"user", key: 0, id: "0", latitude: location.coords.latitude, longitude: location.coords.longitude },
     { name: item.name, key: 1,id: "1", latitude: item.latitude, longitude: item.longitude }
   ];
 
@@ -25,7 +25,7 @@ const BoozeDisplay = ({ route, navigation }) => {
     if (Platform.OS === 'ios') {
       ref?.current?.fitToElements(false);
     } else {
-      ref?.current?.fitToCoordinates([{latitude: markers[0].latitude, longitude: markers[0].longitude}, {latitude: markers[1].latitude, longitude: markers[1].longitude}], {
+      ref?.current?.fitToCoordinates([{latitude: location.coords.latitude, longitude: location.coords.longitude}, {latitude: markers[0].latitude, longitude: markers[0].longitude}], {
         animated: true,
         edgePadding: {
           top: 150,
@@ -58,6 +58,7 @@ const BoozeDisplay = ({ route, navigation }) => {
               longitudeDelta: 0.006866,
             }}
             onMapReady={onMapReadyHandler}
+            showsUserLocation={true}
           >
 
             {/*<Marker
