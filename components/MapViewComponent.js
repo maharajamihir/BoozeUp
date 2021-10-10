@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, Dimensions, Switch } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, SafeAreaView, View, Dimensions, Switch, Button } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LocationContext } from '../services/LocationContext';
 import MapView, { Marker } from 'react-native-maps';
@@ -58,9 +58,10 @@ const MapViewScreen = ({ navigation }) => {
               longitudeDelta: 0.006866,
             }}
           >
-            <Marker
+
+            {/*<Marker
               coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }}
-            />
+            />*/}
             {boozeOffers.map((marker) => (
               <Marker
                 coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
@@ -75,7 +76,9 @@ const MapViewScreen = ({ navigation }) => {
 
             */}
         </View>
-        : <Text>Loading...</Text>}
+        : <SafeAreaView style={styles.container}>
+            <ActivityIndicator size="large" color="#000000" />
+          </SafeAreaView>}
     </View>
   );
 }
