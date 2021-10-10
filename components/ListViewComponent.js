@@ -5,11 +5,14 @@ import { LocationContext } from '../services/LocationContext';
 import BoozeDisplay from './BoozeDisplay';
 import { textStyles } from '../styles/TextStyles';
 import { BoozeOfferContext } from '../services/BoozeOfferContext';
+import {getDistance} from 'geolib';
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
+const Item = ({ item, onPress, backgroundColor, textColor, dis }) => (
   <TouchableOpacity onPress={onPress} style={[styles.box, backgroundColor]}>
     <Text style={[styles.booze_type, textColor]}>{item.booze_type} for {item.price}€</Text>
-    <Text style={[styles.booze_type, textColor]}>Check it out now!</Text>
+    {dis>1000 ? 
+      <Text style={[styles.booze_type, textColor]}>Only {dis/1000}km away</Text> : 
+      <Text style={[styles.booze_type, textColor]}>Only {dis}m away!</Text>}
 
   </TouchableOpacity>
 );
@@ -20,19 +23,26 @@ const ListView = ({ navigation }) => {
   const { location, error } = useContext(LocationContext);
   const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
 
+
+  
   const renderItem = ( { item }) => {
     const backgroundColor = item.id === selectedId ? "#000000" : "#ffffff";
     const color = item.id === selectedId ? 'white' : 'black';
 
+    var dis = getDistance(
+      {latitude: location.coords.latitude, longitude: location.coords.longitude},
+      {latitude: item.latitude, longitude: item.longitude},
+    );
     return (
       <Item
         item={item}
         onPress={() => {
           setSelectedId(item.id);
-          navigation.navigate('Booze', { item: item });
+          navigation.navigate('Booze', { item: item, dis: dis});
         }}
         backgroundColor={{ backgroundColor }}
         textColor={{ color }}
+        dis={dis}
       />
     );
   };
@@ -136,6 +146,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    borderRadius: 10,
   },
   input: {
     height: 50,
