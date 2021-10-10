@@ -7,7 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const BoozeDisplay = ({ route, navigation }) => {
 
-  const {location, error} = useContext(LocationContext);  
+  const {location, requestLocation} = useContext(LocationContext);  
 
   const { item , dis} = route.params;
 
@@ -16,6 +16,7 @@ const BoozeDisplay = ({ route, navigation }) => {
     { name: item.name, key: 1,id: "1", latitude: item.latitude, longitude: item.longitude }
   ];
 
+ // requestLocation();
 
   const ref = useRef();
 
@@ -39,13 +40,12 @@ const BoozeDisplay = ({ route, navigation }) => {
     <SafeAreaView style={styles.main_container}>
       <View style={styles.container}>
         <Text style={textStyles.title}>
-          {item.booze_type}
+          {item.booze_type} for {item.price}€
         </Text>
+        {dis<1000 ? <Text style={textStyles.paragraph}>{dis/1000}m away</Text> : <Text style={textStyles.paragraph}>{dis/1000} km away</Text>}
           <View style={styles.box}>
-          {item.name !== 'None' ?<Text style={textStyles.paragraph}>{item.name}</Text> : null}
+          {item.name !== 'None' ?<Text style={{fontSize: 25}}>{item.name}</Text> : null}
           {item.description !== 'None'?<Text style={textStyles.paragraph}>{item.description}</Text> : null}
-          <Text style={textStyles.paragraph}>{item.price}€</Text>
-          <Text style={textStyles.paragraph}>{dis/1000} km away</Text>
           </View>
       </View>
       <MapView
