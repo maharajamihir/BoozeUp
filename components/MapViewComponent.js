@@ -67,6 +67,7 @@ const MapViewScreen = ({ navigation }) => {
                 coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
                 title={marker.title}
                 description={marker.description}
+                key={marker.id}
               />
             ))}
           </MapView>
