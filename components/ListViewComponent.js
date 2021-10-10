@@ -6,6 +6,7 @@ import BoozeDisplay from './BoozeDisplay';
 import { textStyles } from '../styles/TextStyles';
 import { BoozeOfferContext } from '../services/BoozeOfferContext';
 import {getDistance} from 'geolib';
+import { Ionicons } from '@expo/vector-icons';
 
 const Item = ({ item, onPress, backgroundColor, textColor, dis }) => (
   <TouchableOpacity onPress={onPress} style={[styles.box, backgroundColor]}>
@@ -14,6 +15,14 @@ const Item = ({ item, onPress, backgroundColor, textColor, dis }) => (
       <Text style={[styles.booze_type, textColor]}>Only {dis/1000}km away</Text> : 
       <Text style={[styles.booze_type, textColor]}>Only {dis}m away!</Text>}
 
+  </TouchableOpacity>
+);
+
+export const MapButton = ({ text, onPress, style, icon}) => (
+  <TouchableOpacity onPress={onPress} style={style}>
+    <Text style={{textAlign: "center", fontSize: 20,}}>
+    <Ionicons name={icon} size={36} color="black"/>
+    </Text>
   </TouchableOpacity>
 );
 
@@ -90,14 +99,14 @@ const ListView = ({ navigation }) => {
         >
           <View style={{ flexDirection: 'row', alignContent: 'center' }}>
             <Text style={textStyles.title}>Booze in your Area</Text>
-            <Switch
+
+            <MapButton
               style={styles.button}
               value={toggleButtonPressed}
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={toggleButtonPressed ? "#f5dd4b" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleButton}
+              onPress={toggleButton}
+              icon="map-outline"
             />
+
           </View>
           <FlatList
             data={boozeOffers}
@@ -166,7 +175,9 @@ const styles = StyleSheet.create({
     // marginBottom: 75,
   },
   button: {
-    left: 80,
-
+    position: 'absolute',
+    right: 5,
+    top: 5,
   },
+
 });

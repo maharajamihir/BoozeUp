@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LocationContext } from '../services/LocationContext';
 import MapView, { Marker } from 'react-native-maps';
 import { BoozeOfferContext } from '../services/BoozeOfferContext';
+import { MapButton } from './ListViewComponent';
 
 const MapViewScreen = ({ navigation }) => {
   const { location, error } = useContext(LocationContext);
@@ -36,17 +37,6 @@ const MapViewScreen = ({ navigation }) => {
   }, []);
   return (
     <View>
-      <SafeAreaView style={styles.maincontainer}>
-        <Switch
-          style={styles.button}
-          value={toggleButtonPressed}
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={toggleButtonPressed ? "#f5dd4b" : "#f4f3f4"}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleButton}
-        />
-      </SafeAreaView>
-
       {(location && boozeOffers) ?
         <View>
           <MapView
@@ -76,6 +66,14 @@ const MapViewScreen = ({ navigation }) => {
                 <Text>Longitude: {location.coords.latitude}</Text>
 
             */}
+
+            <MapButton
+              style={styles.button}
+              value={toggleButtonPressed}
+              onPress={toggleButton}
+              icon="map"
+            />
+
         </View>
         : <SafeAreaView style={styles.container}>
             <ActivityIndicator size="large" color="#000000" />
@@ -123,5 +121,12 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+  },
+
+  button: {
+    position: 'absolute', 
+    right: 5,
+    top: 5,
+ 
   }
 });
