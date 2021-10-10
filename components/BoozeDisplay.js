@@ -2,18 +2,13 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet} from "react-native";
 import { LocationContext } from "../services/LocationContext";
 import { textStyles } from "../styles/TextStyles";
-import {getDistance} from 'geolib';
 
 const BoozeDisplay = ({ route, navigation }) => {
 
   const {location, error} = useContext(LocationContext);  
 
-  const { item } = route.params;
+  const { item , dis} = route.params;
 
-  var dis = getDistance(
-    {latitude: location.coords.latitude, longitude: location.coords.longitude},
-    {latitude: item.latitude, longitude: item.longitude},
-  );
   return (
     <View style={styles.container}>
       <Text style={textStyles.title}>
