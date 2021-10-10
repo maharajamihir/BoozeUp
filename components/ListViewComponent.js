@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, Text, SafeAreaView, TouchableOpacity, FlatList, RefreshControl } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LocationContext } from '../services/LocationContext';
@@ -56,9 +56,9 @@ const ListView = ({ navigation }) => {
       .then(l => { return l });
   }
 
-  if (location && !boozeOffers) {
+  useEffect(() => {
     getBoozeOffers();
-  }
+  }, []);
 
   const onRefresh = () => {
     setboozeOffers(null);

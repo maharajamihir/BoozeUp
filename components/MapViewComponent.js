@@ -7,14 +7,7 @@ export default function MapViewComponent({ navigation }) {
   const { location, error } = useContext(LocationContext);
   const [boozeOffers, setboozeOffers] = useState(null);
 
-  let text = 'Waiting..';
-  if (error) {
-    text = error;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
-
-const getBoozeOffers = () => {
+  const getBoozeOffers = () => {
     const url = 'https://boozeup.herokuapp.com/browse?'
     //const url  = 'http://localhost:5000/browse?'
     fetch(url, {
@@ -35,12 +28,16 @@ const getBoozeOffers = () => {
       .then(l => { return l });
   }
 
+  useEffect(() => {
+    getBoozeOffers();
+  }, []);
+
   return (
     <View>
       <SafeAreaView style={styles.maincontainer}>
       </SafeAreaView>
 
-      {location ?
+      {(location && boozeOffers) ?
         <View>
           <MapView
             style={styles.map}
@@ -56,9 +53,8 @@ const getBoozeOffers = () => {
             />
             {boozeOffers.map((marker) => (
               <Marker
-                coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
-                //TODO: vielleicht + marker.id?
-                title={marker.booze_type}
+                coordinate={ { latitude: marker.latitude, longitude: marker.longitude } }
+                title={marker.title}
                 description={marker.description}
               />
             ))}
