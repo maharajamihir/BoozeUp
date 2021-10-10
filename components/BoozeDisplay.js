@@ -42,7 +42,7 @@ const BoozeDisplay = ({ route, navigation }) => {
         <Text style={textStyles.title}>
           {item.booze_type} for {item.price}€
         </Text>
-        {dis<1000 ? <Text style={textStyles.paragraph}>{dis/1000}m away</Text> : <Text style={textStyles.paragraph}>{dis/1000} km away</Text>}
+        {dis<1000 ? <Text style={textStyles.paragraph}>{dis}m away</Text> : <Text style={textStyles.paragraph}>{dis/1000} km away</Text>}
           <View style={styles.box}>
           {item.name !== 'None' ?<Text style={{fontSize: 25}}>{item.name}</Text> : null}
           {item.description !== 'None'?<Text style={textStyles.paragraph}>{item.description}</Text> : null}
