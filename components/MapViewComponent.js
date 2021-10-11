@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, Dimensions, Switch } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, Dimensions, Switch, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LocationContext } from '../services/LocationContext';
 import MapView, { Marker } from 'react-native-maps';
@@ -57,10 +57,9 @@ const MapViewScreen = ({ navigation }) => {
               latitudeDelta: 0.004757,
               longitudeDelta: 0.006866,
             }}
+            showsUserLocation={true}
+            mapPadding={ { top: 50, right: 0, bottom: 30, left: 0 } }
           >
-            <Marker
-              coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }}
-            />
             {boozeOffers.map((marker) => (
               <Marker
                 coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
@@ -69,14 +68,26 @@ const MapViewScreen = ({ navigation }) => {
               />
             ))}
           </MapView>
+          <View style={styles.buttonContainerUpDown}>
+            <TouchableOpacity
+              style={[styles.button, styles.up]}
+            >
+              <Text>+ Lat</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, styles.down]}
+            >
+              <Text>- Lat</Text>
+            </TouchableOpacity>
+          </View>
           {/*
                 <Text>Latitude: {location.coords.latitude}</Text>
                 <Text>Longitude: {location.coords.latitude}</Text>
 
             */}
-        </View>
-        : <Text>Loading...</Text>}
     </View>
+        : <Text>Loading...</Text>}
+    </View >
   );
 }
 
@@ -119,5 +130,32 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-  }
+  },
+  buttonContainerUpDown: {
+    ...StyleSheet.absoluteFillObject,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  buttonContainerLeftRight: {
+    ...StyleSheet.absoluteFillObject,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  button: {
+    backgroundColor: 'rgba(100,100,100,0.2)',
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    height: 50,
+    width: 50,
+  },
+  up: {
+    alignSelf: 'flex-start',
+  },
+  down: {
+    position: 'relative',
+    alignSelf: 'flex-end',
+    flex: 1,
+  },
 });
