@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 20
   },
   box:{
-    borderTopWidth: 5,
+    //borderTopWidth: 5,
      //borderColor: 
   },
   center:{

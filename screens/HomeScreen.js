@@ -13,19 +13,12 @@ export default function HomeScreen({ navigation }) {
 
    const {toggleButton, toggleButtonPressed} = useContext(BoozeOfferContext);
 
-    if(toggleButtonPressed){
-        return (
-            <SafeAreaView style={styles.maincontainer}>
-                    <MapViewComponent />
-            </SafeAreaView>
-            );
-    } else {
-        return (
-            <SafeAreaView style={styles.maincontainer}>
-                <NavigableList />
-            </SafeAreaView>
-            );
-    }
+    return (
+        <SafeAreaView style={styles.maincontainer}>
+                {toggleButtonPressed ? <MapViewComponent /> : <NavigableList />}
+        </SafeAreaView>
+        );
+    
     
   }
   

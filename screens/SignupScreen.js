@@ -32,11 +32,13 @@ export default function LoginScreen() {
           style={buttonStyles.box}
           onChangeText={setUsername}
           placeholder="Username"
+          autoCapitalize = 'none'
         />
           <TextInput
           style={buttonStyles.box}
           onChangeText={setEmail}
           placeholder="Email"
+          autoCapitalize = 'none'
         />
           <TextInput
           style={buttonStyles.box}
