@@ -76,7 +76,7 @@ const MapViewScreen = ({ navigation }) => {
           _map.current.animateToRegion(
             {
               ...coordinate,
-              //TODO: muss eine state für die Map einführen
+              //TODO: muss eine state für die Map einführen (?)
               latitudeDelta: initialMapState.region.latitudeDelta,
               longitudeDelta: initialMapState.region.longitudeDelta,
             },
@@ -86,6 +86,18 @@ const MapViewScreen = ({ navigation }) => {
       }, 10);
     });
   });
+
+  const onMarkerPress = (mapEventData) => {
+    const markerID = mapEventData._targetInst.return.key - 1; //TODO: WARUM muss ich - 1 machen? Komischer hotfix
+    console.log(markerID);
+
+    let x = (markerID * CARD_WIDTH) + (markerID * 20);
+    if (Platform.OS === 'ios') {
+      x = x - SPACING_FOR_CARD_INSERT;
+    }
+
+    _scrollView.current.getNode().scrollTo({x: x, y: 0, animated: true});
+  }
 
   const _map = React.useRef(null);
   const _scrollView = React.useRef(null);
@@ -130,23 +142,12 @@ const MapViewScreen = ({ navigation }) => {
             showPointsOfInterest={false}
             ref={_map}
           >
-            {boozeOffers.map((marker) => (
+            {boozeOffers.map((marker, index) => (
               <Marker
                 coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
-                title={marker.booze_type}
-                description={marker.description}
-                key={marker.id}
+                key={index}
+                onPress={(e) => onMarkerPress(e)}
               >
-                <Callout tooltip>
-                  <View>
-                    <View style={styles.bubble}>
-                      <Text style={styles.name}> Favourite Restaurant </Text>
-                      <Text> A short description </Text>
-                    </View>
-                    <View style={styles.arrowBorder} />
-                    <View style={styles.arrow} />
-                  </View>
-                </Callout>
               </Marker>
             ))}
           </MapView>
@@ -183,6 +184,7 @@ const MapViewScreen = ({ navigation }) => {
             ))}
           </ScrollView>
           <Animated.ScrollView
+            ref={_scrollView}
             horizontal
             scrollEventThrottle={1}
             showsHorizontalScrollIndicator={false}
@@ -212,8 +214,8 @@ const MapViewScreen = ({ navigation }) => {
               { useNativeDriver: true }
             )}
           >
-            {boozeOffers.map((marker) => (
-              <View style={styles.card} key={marker.id}>
+            {boozeOffers.map((marker, index) => (
+              <View style={styles.card} key={index}>
                 <View style={styles.textContent}>
                   <Text numberOfLines={1} style={styles.cardtitle}> {marker.booze_type} </Text>
                   <Text numberOfLines={1} style={styles.cardDescription}> {marker.description} </Text>
