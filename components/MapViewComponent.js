@@ -10,7 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const { width, height } = Dimensions.get('window');
-const CARD_HEIGHT = 220;
+const CARD_HEIGHT = 100; //220 might be most usable
 const CARD_WIDTH = width * 0.8;
 const SPACING_FOR_CARD_INSERT = width * 0.1 - 10;
 
