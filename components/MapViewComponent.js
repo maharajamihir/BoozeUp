@@ -218,6 +218,7 @@ const MapViewScreen = ({ navigation }) => {
               <View style={styles.card} key={index}>
                 <View style={styles.textContent}>
                   <Text numberOfLines={1} style={styles.cardtitle}> {marker.booze_type} </Text>
+                  <Text numberOfLines={1} style={styles.cardDescription}> {marker.price}€ </Text>
                   <Text numberOfLines={1} style={styles.cardDescription}> {marker.description} </Text>
                   <View style={styles.button}>
                     <TouchableOpacity
