@@ -7,7 +7,7 @@ import LoginContainer from '../screens/LoginContainer';
 export const Navigation = () => {
   var { isAuthenticated } = useContext(AuthenticationContext);
   /*Uncomment this for quick development purposes */
-  isAuthenticated = true;
+  //isAuthenticated = true;
   if(isAuthenticated){
     return (
       <AppContainer />
