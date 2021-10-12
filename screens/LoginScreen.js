@@ -30,7 +30,7 @@ export default function LoginScreen() {
                             autoCompleteType="password"
                             placeholder="Password"
                         />
-                        {(error && error[1] == 400) ? <Text>User not found! Please check your login credentials.</Text> : null}
+                    {(error && error[1] == 400) ? <Text styles={textStyles.paragraph}>User not found! Please check your login credentials.</Text> : null}
                 </View>
                 {(email && password) ?
                 <BoozeUpButton
