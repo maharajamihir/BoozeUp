@@ -1,11 +1,14 @@
-import React, { useContext, useRef, useCallback } from "react";
+import React, { useContext, useRef, useCallback, useEffect, useState } from "react";
 import { View, Text, StyleSheet, Dimensions} from "react-native";
 import { LocationContext } from "../services/LocationContext";
 import { textStyles } from "../styles/TextStyles";
 import MapView, { Marker } from 'react-native-maps';
 import { SafeAreaView } from "react-native-safe-area-context";
+import { BoozeUpButton } from "../styles/ButtonStyles";
 
 const BoozeDisplay = ({ route, navigation }) => {
+
+  const [requestStatus, setRequestStatus] = useState('viewing');
 
   const {location, requestLocation} = useContext(LocationContext);  
 
@@ -16,7 +19,9 @@ const BoozeDisplay = ({ route, navigation }) => {
     { name: item.name, key: 1,id: "1", latitude: item.latitude, longitude: item.longitude }
   ];
 
- // requestLocation();
+  useEffect(() => {
+    requestLocation();
+  }, []);
 
   const ref = useRef();
 
@@ -36,18 +41,10 @@ const BoozeDisplay = ({ route, navigation }) => {
       });
     }
   }, [ref]);
-  return (
-    <SafeAreaView style={styles.main_container}>
-      <View style={styles.container}>
-        <Text style={textStyles.title}>
-          {item.booze_type} for {item.price}€
-        </Text>
-        {dis<1000 ? <Text style={textStyles.paragraph}>{dis}m away</Text> : <Text style={textStyles.paragraph}>{dis/1000} km away</Text>}
-          <View style={styles.box}>
-          {item.name !== 'None' ?<Text style={{fontSize: 25}}>{item.name}</Text> : null}
-          {item.description !== 'None'?<Text style={textStyles.paragraph}>{item.description}</Text> : null}
-          </View>
-      </View>
+
+
+  const RenderMapView = () => {
+    return(
       <MapView
             ref={ref}
             style={styles.map}
@@ -78,6 +75,45 @@ const BoozeDisplay = ({ route, navigation }) => {
               />
             ))}
       </MapView>
+    );
+  }
+
+  const RequestBoozeComponent = () => {
+    if(requestStatus === 'viewing'){
+      return(
+        <View style={styles.center}>
+        <BoozeUpButton 
+          title="Request Booze"
+          onPress={(() => setRequestStatus('approved'))} //actually should be requested
+        />
+        </View>
+      );
+    } else if(requestStatus === 'requested'){
+      return(
+        <View style={styles.center}>
+        <BoozeUpButton 
+          style={styles.center}
+          title="Cancel Request"
+          onPress={(() => setRequestStatus('viewing'))}
+        />
+        </View>
+      );
+      }
+  }
+
+  return (
+    <SafeAreaView style={styles.main_container}>
+      <View style={styles.container}>
+        <Text style={textStyles.title}>
+          {item.booze_type} for {item.price}€
+        </Text>
+        {dis<1000 ? <Text style={textStyles.paragraph}>{dis}m away</Text> : <Text style={textStyles.paragraph}>{dis/1000} km away</Text>}
+          <View style={styles.box}>
+          {item.name !== 'None' ?<Text style={{fontSize: 25}}>{item.name}</Text> : null}
+          {item.description !== 'None'?<Text style={textStyles.paragraph}>{item.description}</Text> : null}
+          </View>
+      </View>
+      {requestStatus === 'approved' ? <RenderMapView /> : <RequestBoozeComponent />}
     </SafeAreaView>
   );
 }
@@ -101,7 +137,6 @@ const styles = StyleSheet.create({
   },
   center:{
     flex: 1, 
-    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20
   },
