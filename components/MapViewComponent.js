@@ -71,7 +71,7 @@ const MapViewScreen = ({ navigation }) => {
               style={styles.button}
               value={toggleButtonPressed}
               onPress={toggleButton}
-              icon="map"
+              icon="list"
             />
 
         </View>
