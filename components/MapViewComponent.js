@@ -96,7 +96,7 @@ const MapViewScreen = ({ navigation }) => {
       x = x - SPACING_FOR_CARD_INSERT;
     }
 
-    _scrollView.current.getNode().scrollTo({x: x, y: 0, animated: true});
+    _scrollView.current.getNode().scrollTo({ x: x, y: 0, animated: true });
   }
 
   const _map = React.useRef(null);
@@ -263,7 +263,7 @@ const MapViewComponent = () => {
       <Stack.Screen
         name="Map"
         component={MapViewScreen}
-      //options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   },
   searchBox: {
     position: 'absolute',
-    marginTop: Platform.OS === 'ios' ? 40 : 20,
+    marginTop: Platform.OS === 'ios' ? 40 : 40,
     flexDirection: 'row',
     backgroundColor: '#fff',
     width: '90%',
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
   },
   chipScrollView: {
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 90 : 80,
+    top: Platform.OS === 'ios' ? 110 : 100,
     paddingHorizontal: 10,
   },
   chipsIcon: {
@@ -320,6 +320,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingVertical: 10,
+    marginBottom: 20,
   },
   endPadding: {
     paddingRight: width - CARD_WIDTH,
@@ -423,7 +424,13 @@ const styles = StyleSheet.create({
   },
   button1: {
     position: 'absolute',
-    right: 5,
-    top: 5,
+    right: 20,
+    top: 150,
+    elevation: 10,
+    shadowColor: '#ccc',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+
   },
 });

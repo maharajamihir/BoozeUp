@@ -1,9 +1,25 @@
 import React, { useContext } from 'react';
-import { Button, Text, View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
 import { AuthenticationContext } from '../services/AuthenticationContext';
 import { RadioButton } from 'react-native-paper';
 import { BoozeUpButton, buttonStyles } from '../styles/ButtonStyles';
 import { textStyles } from '../styles/TextStyles';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import {
+  NativeBaseProvider,
+  Box,
+  Text,
+  Heading,
+  VStack,
+  FormControl,
+  Input,
+  Link,
+  Button,
+  Icon,
+  IconButton,
+  HStack,
+  Divider,
+} from 'native-base';
 
 export default function LoginScreen() {
   const [username, setUsername] = React.useState(null);
@@ -23,61 +39,63 @@ export default function LoginScreen() {
     }
   };
 
-
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={textStyles.title}>Please SignUp to BoozeUp!</Text>
-      <View>
-         <TextInput
-          style={buttonStyles.box}
-          onChangeText={setUsername}
-          placeholder="Username"
-          autoCapitalize = 'none'
-        />
-          <TextInput
-          style={buttonStyles.box}
-          onChangeText={setEmail}
-          placeholder="Email"
-          autoCapitalize = 'none'
-        />
-          <TextInput
-          style={buttonStyles.box}
-          onChangeText={setNumber}
-          keyboardType="number-pad"
-          placeholder="Phone Number"
-        />
-         <TextInput
-          style={buttonStyles.box}
-          onChangeText={setPassword}
-          secureTextEntry={true}
-          placeholder="Password"
-        />
-        <TextInput
-          style={buttonStyles.box}
-          onChangeText={repeatPassword}
-          secureTextEntry={true}
-          placeholder="Repeat Password"
-        />
-         <View style={{ flexDirection: 'row', alignContent: 'center' }}>
-        <RadioButton
-          status={checked === true ? 'checked' : 'unchecked'}
-          onPress={() => checked === false ? setChecked(true) : setChecked(false)}
-        />
-        <View style={{ alignSelf: 'center' }}>
-          <Text>I hereby confirm, that I am 18+ years old</Text>
-        </View>
-      </View>
-        {isLoading ? <Text>Logging in... Please wait...</Text> : null}
-        {(error && error[1] == 400) ? <Text>User with this email already exists.</Text> : null}
-      </View>{(doesPasswordMatch && checked) ?
-        <BoozeUpButton
-          title="Signup"
-          onPress={() => onRegister(username.trim(), number, email.trim(), password.trim())}
-          loading={isLoading}
-        /> :
-        <Text>Please fill out all the fields</Text>
-      }
-    </View>
+
+    <NativeBaseProvider >
+      <Box safeArea flex={1} p="2" w="90%" mx="auto" py="8">
+        <Heading size="lg" color="coolGray.800" fontWeight="600">
+          Welcome
+        </Heading>
+        <Heading mt="1" color="coolGray.600" fontWeight="medium" size="xs">
+          Sign up to continue!
+        </Heading>
+
+        <VStack space={3} mt="5">
+          <FormControl>
+            <Input autoCapitalize='none' onChangeText={setUsername} placeholder='Username' />
+          </FormControl>
+
+          <FormControl>
+            <Input autoCapitalize='none' onChangeText={setEmail} placeholder='Email' />
+          </FormControl>
+
+          <FormControl>
+            <Input onChangeText={setNumber} keyboardType='number-pad' placeholder='Phone number' />
+          </FormControl>
+
+          <FormControl>
+            <Input type="password" onChangeText={setPassword} placeholder='Password'/>
+          </FormControl>
+
+          <FormControl>
+            <Input type="password" onChangeText={repeatPassword} placeholder='Repeat Password' />
+          </FormControl>
+
+          <View style={{ flexDirection: 'row', alignContent: 'center' }}>
+            <RadioButton
+              status={checked === true ? 'checked' : 'unchecked'}
+              onPress={() => checked === false ? setChecked(true) : setChecked(false)}
+            />
+            <View style={{ alignSelf: 'center' }}>
+              <Text>I hereby confirm, that I am 18+ years old</Text>
+            </View>
+          </View>
+
+
+          {isLoading ? <Text>Logging in... Please wait...</Text> : null}
+          {(error && error[1] == 400) ? <Text>User with this email already exists.</Text> : null}
+
+          {(doesPasswordMatch && checked) ?
+            <Button mt="2" colorScheme="indigo" _text={{ color: 'white' }}
+              onPress={() => onRegister(username.trim(), number, email.trim(), password.trim())}
+              loading={isLoading}
+            > Sign up </Button> :
+            <Text>Please fill out all the fields</Text>
+          }
+        </VStack>
+      </Box>
+    </NativeBaseProvider >
+
   );
 }
 

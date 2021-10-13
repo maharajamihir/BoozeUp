@@ -21,7 +21,7 @@ const Item = ({ item, onPress, backgroundColor, textColor, dis }) => (
 export const MapButton = ({ text, onPress, style, icon}) => (
   <TouchableOpacity onPress={onPress} style={style}>
     <Text style={{textAlign: "center", fontSize: 20,}}>
-    <Ionicons name={icon} size={36} color="black"/>
+    <Ionicons name={icon} size={36} color="teal"/>
     </Text>
   </TouchableOpacity>
 );
@@ -98,7 +98,7 @@ const ListView = ({ navigation }) => {
           }
         >
           <View style={{ flexDirection: 'row', alignContent: 'center' }}>
-            <Text style={textStyles.title}>Booze in your Area</Text>
+            <Text style={styles.title}>Booze in your Area</Text>
 
             <MapButton
               style={styles.button}
@@ -152,17 +152,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   box: {
-    margin: 12,
+    marginHorizontal: 20,
+    marginVertical: 5,
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
-  },
-  input: {
-    height: 50,
-    width: 300,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+    color: 'teal',
   },
   input: {
     height: 50,
@@ -176,8 +171,15 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
-    right: 5,
-    top: 5,
+    right: 20,
+    top: 15,
   },
-
+  title: {
+    color: 'teal',
+    fontWeight: 'bold',
+    fontSize: 35,
+    marginLeft: 20,
+    marginTop: 10,
+    marginBottom: 10,
+  },
 });
