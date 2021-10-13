@@ -22,7 +22,6 @@ const MapViewScreen = ({ navigation }) => {
       },
       body: JSON.stringify({
         token: user,
-        //location : location,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       })
