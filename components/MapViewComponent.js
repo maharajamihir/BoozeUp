@@ -7,7 +7,7 @@ import { BoozeOfferContext } from '../services/BoozeOfferContext';
 import { MapButton } from './ListViewComponent';
 
 const MapViewScreen = ({ navigation }) => {
-  const { location, error } = useContext(LocationContext);
+  const { location, error, user } = useContext(LocationContext);
   const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
   const [boozeOffers, setboozeOffers] = useState(null);
 
@@ -21,6 +21,7 @@ const MapViewScreen = ({ navigation }) => {
         'Content-Type': 'application/json; charset=utf-8'
       },
       body: JSON.stringify({
+        token: user,
         //location : location,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,

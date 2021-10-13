@@ -29,7 +29,7 @@ export const MapButton = ({ text, onPress, style, icon}) => (
 const ListView = ({ navigation }) => {
   const [selectedId, setSelectedId] = useState(null);
   const [boozeOffers, setboozeOffers] = useState(null);
-  const { location, error } = useContext(LocationContext);
+  const { location, error, user } = useContext(LocationContext);
   const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
 
 
@@ -66,7 +66,7 @@ const ListView = ({ navigation }) => {
         'Content-Type': 'application/json; charset=utf-8'
       },
       body: JSON.stringify({
-        //location : location,
+        token: user,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       })
