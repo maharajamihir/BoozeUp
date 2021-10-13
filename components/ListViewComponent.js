@@ -29,7 +29,7 @@ export const MapButton = ({ text, onPress, style, icon}) => (
 const ListView = ({ navigation }) => {
   const [selectedId, setSelectedId] = useState(null);
   const [boozeOffers, setboozeOffers] = useState(null);
-  const { location, error } = useContext(LocationContext);
+  const { location, requestLocation } = useContext(LocationContext);
   const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
 
 
@@ -83,6 +83,7 @@ const ListView = ({ navigation }) => {
 
   const onRefresh = () => {
     setboozeOffers(null);
+    requestLocation();
     getBoozeOffers();
   }
 
