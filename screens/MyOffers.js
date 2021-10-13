@@ -18,19 +18,10 @@ const Item = ({ item, onPress, backgroundColor, textColor, dis }) => (
   </TouchableOpacity>
 );
 
-export const MapButton = ({ text, onPress, style, icon}) => (
-  <TouchableOpacity onPress={onPress} style={style}>
-    <Text style={{textAlign: "center", fontSize: 20,}}>
-    <Ionicons name={icon} size={36} color="black"/>
-    </Text>
-  </TouchableOpacity>
-);
-
 const ListView = ({ navigation }) => {
   const [selectedId, setSelectedId] = useState(null);
   const [boozeOffers, setboozeOffers] = useState(null);
   const { location, user } = useContext(LocationContext);
-  const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
 
 
 
