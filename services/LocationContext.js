@@ -22,6 +22,9 @@ export const LocationContextProvider = ({ children }) => {
         console.log("Recieved permission from user");
         // TODO: man kann auch Location.getCurrentPositionAsync nehmen, dann genauer aber langsamer
         let location = await Location.getLastKnownPositionAsync({});
+        if(!location){
+          location = await Location.getCurrentPositionAsync({}); 
+        }
         console.log("Recieved location from user");
         console.log(JSON.stringify(location));
         setLocation(location);
