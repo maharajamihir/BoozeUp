@@ -5,15 +5,18 @@ import { LocationContext } from '../services/LocationContext';
 import MapView, { Marker } from 'react-native-maps';
 import { BoozeOfferContext } from '../services/BoozeOfferContext';
 import { MapButton } from './ListViewComponent';
+import { AuthenticationContext } from '../services/AuthenticationContext';
 
 const MapViewScreen = ({ navigation }) => {
   const { location, error } = useContext(LocationContext);
+  const { user } = useContext(AuthenticationContext)
   const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
   const [boozeOffers, setboozeOffers] = useState(null);
 
   const getBoozeOffers = () => {
     const url = 'https://boozeup.herokuapp.com/browse?'
-    //const url  = 'http://localhost:5000/browse?'
+    //const url  = 'https://45a798fa-c796-4a15-a74e-2608bc666bb8.mock.pstmn.io'
+
     fetch(url, {
       method: 'POST',
       headers: {
@@ -21,7 +24,7 @@ const MapViewScreen = ({ navigation }) => {
         'Content-Type': 'application/json; charset=utf-8'
       },
       body: JSON.stringify({
-        //location : location,
+        token: user,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       })
@@ -71,7 +74,7 @@ const MapViewScreen = ({ navigation }) => {
               style={styles.button}
               value={toggleButtonPressed}
               onPress={toggleButton}
-              icon="map"
+              icon="list"
             />
 
         </View>
