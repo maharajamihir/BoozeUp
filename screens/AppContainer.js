@@ -7,6 +7,7 @@ import { LocationContext } from '../services/LocationContext';
 import LocationRequestScreen from './LocationRequestScreen';
 import { Ionicons } from '@expo/vector-icons';
 import MoreScreen from './MoreScreen';
+import Notifications from './Notifications';
 // https://ionic.io/ionicons
 
 const Tab = createBottomTabNavigator();
@@ -33,8 +34,8 @@ export default function AppContainer() {
                 : 'md-home-outline';
             } else if (route.name === 'More') {
               iconName = focused ? 'person' : 'person-outline';
-            } else if (route.name === 'Add Booze') {
-              iconName = focused ? 'add-circle' : 'add-circle-outline';
+            } else if (route.name === 'Notifications') {
+              iconName = focused ? 'notifications' : 'notifications-outline';
             }
 
             // You can return any component that you like here!
@@ -46,7 +47,7 @@ export default function AppContainer() {
         <Tab.Screen name="Home" component={HomeScreen} 
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="Add Booze" component={AddBoozeScreen} />
+        <Tab.Screen name="Notifications" component={Notifications} />
         <Tab.Screen name="More" component={MoreScreen}
         options={{ headerShown: false }}
          />

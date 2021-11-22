@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }) {
 
     return (
         <SafeAreaView style={styles.maincontainer}>
-                {toggleButtonPressed ? <NavigableList /> : <MapViewComponent />}
+                {!toggleButtonPressed ? <MapViewComponent /> : <NavigableList />}
         </SafeAreaView>
         );
     

@@ -7,6 +7,7 @@ import { textStyles } from '../styles/TextStyles';
 import { BoozeOfferContext } from '../services/BoozeOfferContext';
 import {getDistance} from 'geolib';
 import { Ionicons } from '@expo/vector-icons';
+import { AuthenticationContext } from '../services/AuthenticationContext';
 
 const Item = ({ item, onPress, backgroundColor, textColor, dis }) => (
   <TouchableOpacity onPress={onPress} style={[styles.box, backgroundColor]}>
@@ -29,9 +30,9 @@ export const MapButton = ({ text, onPress, style, icon}) => (
 const ListView = ({ navigation }) => {
   const [selectedId, setSelectedId] = useState(null);
   const [boozeOffers, setboozeOffers] = useState(null);
-  const { location, error } = useContext(LocationContext);
+  const { location, requestLocation } = useContext(LocationContext);
   const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
-
+  const {user } = useContext(AuthenticationContext);
 
   
   const renderItem = ( { item }) => {
@@ -58,7 +59,7 @@ const ListView = ({ navigation }) => {
 
   const getBoozeOffers = () => {
     const url = 'https://boozeup.herokuapp.com/browse?'
-    //const url  = 'http://localhost:5000/browse?'
+    //const url  = 'https://45a798fa-c796-4a15-a74e-2608bc666bb8.mock.pstmn.io'
     fetch(url, {
       method: 'POST',
       headers: {
@@ -66,7 +67,7 @@ const ListView = ({ navigation }) => {
         'Content-Type': 'application/json; charset=utf-8'
       },
       body: JSON.stringify({
-        //location : location,
+        token: user,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       })
@@ -83,6 +84,7 @@ const ListView = ({ navigation }) => {
 
   const onRefresh = () => {
     setboozeOffers(null);
+    requestLocation();
     getBoozeOffers();
   }
 

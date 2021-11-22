@@ -31,10 +31,7 @@ export default function LoginScreen() {
     <NativeBaseProvider>
       <Box safeArea flex={1} p="2" py="8" w="90%" mx="auto">
         <Heading size="lg" fontWeight="600" color="coolGray.800">
-          Welcome to BoozeUp
-        </Heading>
-        <Heading mt="1" color="coolGray.600" fontWeight="medium" size="xs">
-          Sign in to continue!
+          Sign in to BoozeUp
         </Heading>
 
         <VStack space={3} mt="5">

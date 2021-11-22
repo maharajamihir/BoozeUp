@@ -13,9 +13,11 @@ const { width, height } = Dimensions.get('window');
 const CARD_HEIGHT = 150; //220 might be most usable
 const CARD_WIDTH = width * 0.8;
 const SPACING_FOR_CARD_INSERT = width * 0.1 - 10;
+import { AuthenticationContext } from '../services/AuthenticationContext';
 
 const MapViewScreen = ({ navigation }) => {
   const { location, error } = useContext(LocationContext);
+  const { user } = useContext(AuthenticationContext)
   const { toggleButton, toggleButtonPressed } = useContext(BoozeOfferContext);
   const [boozeOffers, setboozeOffers] = useState(null);
 
@@ -104,7 +106,8 @@ const MapViewScreen = ({ navigation }) => {
 
   const getBoozeOffers = () => {
     const url = 'https://boozeup.herokuapp.com/browse?'
-    //const url  = 'http://localhost:5000/browse?'
+    //const url  = 'https://45a798fa-c796-4a15-a74e-2608bc666bb8.mock.pstmn.io'
+
     fetch(url, {
       method: 'POST',
       headers: {
@@ -112,7 +115,7 @@ const MapViewScreen = ({ navigation }) => {
         'Content-Type': 'application/json; charset=utf-8'
       },
       body: JSON.stringify({
-        //location : location,
+        token: user,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       })
@@ -240,12 +243,6 @@ const MapViewScreen = ({ navigation }) => {
             ))}
 
           </Animated.ScrollView>
-          <MapButton
-            style={styles.button1}
-            value={toggleButtonPressed}
-            onPress={toggleButton}
-            icon="map"
-          />
         </View>
         : <SafeAreaView style={styles.container}>
           <ActivityIndicator size="large" color="#000000" />
