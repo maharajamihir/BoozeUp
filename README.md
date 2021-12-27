@@ -5,7 +5,7 @@
   <p></p>
   <sup>
     <a href="https://github.com/maharajamihir/BoozeUp/actions">
-      <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fmcnamee%2Freact-native-starter-kit%2Fbadge%3Fref%3Dmaster&style=flat" alt="builds" />
+      <img src="https://github.com/maharajamihir/BoozeUp/actions/workflows/testing.yml/badge.svg" alt="builds" />
     </a>
     <a href="/LICENSE">
       <img src="https://img.shields.io/github/license/maharajamihir/BoozeUp?style=flat-square" alt="license" />
@@ -23,6 +23,7 @@
 </div>
 
 ---
+ [![Deploy Branch Preview](https://github.com/maharajamihir/BoozeUp/actions/workflows/testing.yml/badge.svg)](https://github.com/maharajamihir/BoozeUp/actions/workflows/testing.yml)
 
 ## :calling: About
 BoozeUp - Buy and Sell Booze convienently and easily using an App. No hassle to reach the stores before they close or drive too far to get booze in the evening. Locate Booze in your Area and keep the party running!
