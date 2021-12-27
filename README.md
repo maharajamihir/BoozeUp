@@ -13,7 +13,7 @@
   </sup>
   <br />
   <p align="center">
-    <a href="#-about"><b>What is this?</b></a>
+    <a href="#calling-about"><b>What is this?</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
     <a href="#-getting-started"><b>Usage</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
