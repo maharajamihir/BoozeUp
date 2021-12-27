@@ -1,4 +1,30 @@
-# BoozeUp
+<div align="center">
+  <img src="documentation/rnsk-logo.jpg" alt="BoozeUp" width="400" />
+  <p></p>
+  <h1>BoozeUp</h1>
+  <p></p>
+  <sup>
+    <a href="https://github.com/maharajamihir/BoozeUp/actions">
+      <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fmcnamee%2Freact-native-starter-kit%2Fbadge%3Fref%3Dmaster&style=flat" alt="builds" />
+    </a>
+    <a href="/LICENSE">
+      <img src="https://img.shields.io/github/license/mcnamee/react-native-starter-kit?style=flat-square" alt="license" />
+    </a>
+  </sup>
+  <br />
+  <p align="center">
+    <a href="#-about"><b>What is this?</b></a>
+    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    <a href="#-getting-started"><b>Usage</b></a>
+    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    <a href="#-docs"><b>Docs</b></a>
+    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    <a href="#-further-help"><b>Need help?</b></a>
+  </p>
+  <br />
+</div>
+
+---
 
 ## :calling: About
 BoozeUp - Buy and Sell Booze convienently and easily using an App. No hassle to reach the stores before they close or drive too far to get booze in the evening. Locate Booze in your Area and keep the party running!
