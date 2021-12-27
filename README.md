@@ -23,8 +23,6 @@
 </div>
 
 ---
- [![Deploy Branch Preview](https://github.com/maharajamihir/BoozeUp/actions/workflows/testing.yml/badge.svg)](https://github.com/maharajamihir/BoozeUp/actions/workflows/testing.yml)
-
 ## :calling: About
 BoozeUp - Buy and Sell Booze convienently and easily using an App. No hassle to reach the stores before they close or drive too far to get booze in the evening. Locate Booze in your Area and keep the party running!
 
