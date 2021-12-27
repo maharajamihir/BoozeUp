@@ -8,18 +8,16 @@
       <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fmcnamee%2Freact-native-starter-kit%2Fbadge%3Fref%3Dmaster&style=flat" alt="builds" />
     </a>
     <a href="/LICENSE">
-      <img src="https://img.shields.io/github/license/mcnamee/react-native-starter-kit?style=flat-square" alt="license" />
+      <img src="https://img.shields.io/github/license/maharajamihir/BoozeUp?style=flat-square" alt="license" />
     </a>
   </sup>
   <br />
   <p align="center">
     <a href="#calling-about"><b>What is this?</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#-getting-started"><b>Usage</b></a>
+    <a href="#eyes-preview"><b>Preview</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#-docs"><b>Docs</b></a>
-    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#-further-help"><b>Need help?</b></a>
+    <a href="#book-documentation"><b>Docs</b></a>
   </p>
   <br />
 </div>
