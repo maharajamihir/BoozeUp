@@ -8,7 +8,7 @@
       <img src="https://github.com/maharajamihir/BoozeUp/actions/workflows/testing.yml/badge.svg" alt="builds" />
     </a>
     <a href="/LICENSE">
-      <img src="https://img.shields.io/github/license/maharajamihir/BoozeUp?style=flat-square" alt="license" />
+      <img src="https://img.shields.io/github/license/maharajamihir/BoozeUp" alt="license" />
     </a>
   </sup>
   <br />
