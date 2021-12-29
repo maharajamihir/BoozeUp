@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './HomeScreen';
 import AddBoozeScreen from './AddBoozeScreen';
 import { LocationContext } from '../services/LocationContext';
@@ -10,7 +10,7 @@ import MoreScreen from './MoreScreen';
 import Notifications from './Notifications';
 // https://ionic.io/ionicons
 
-const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function AppContainer() {
 
@@ -23,35 +23,14 @@ export default function AppContainer() {
   if(gotLocation){
   return (
     <NavigationContainer>
-      <Tab.Navigator
-      screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = focused
-                ? 'md-home'
-                : 'md-home-outline';
-            } else if (route.name === 'More') {
-              iconName = focused ? 'person' : 'person-outline';
-            } else if (route.name === 'Notifications') {
-              iconName = focused ? 'notifications' : 'notifications-outline';
-            }
-
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: 'black',
-          tabBarInactiveTintColor: 'gray',
-        })}>
-        <Tab.Screen name="Home" component={HomeScreen} 
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} 
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="Notifications" component={Notifications} />
-        <Tab.Screen name="More" component={MoreScreen}
-        options={{ headerShown: false }}
+        <Drawer.Screen name="Notifications" component={Notifications} />
+        <Drawer.Screen name="More" component={MoreScreen}
          />
-      </Tab.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
   } else {

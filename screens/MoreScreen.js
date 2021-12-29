@@ -71,7 +71,7 @@ const MoreScreen = () => {
           <Stack.Screen
             name="More"
             component={ListView}
-            //options={{ headerShown: false }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="My Account" component={MyAccount} />

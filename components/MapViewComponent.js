@@ -154,6 +154,7 @@ const MapViewScreen = ({ navigation }) => {
               </Marker>
             ))}
           </MapView>
+
           <View style={styles.searchBox}>
             <TextInput
               placeholder="Search here"
@@ -180,7 +181,7 @@ const MapViewScreen = ({ navigation }) => {
             }}
           >
             {initialMapState.categories.map((category, index) => (
-              <TouchableOpacity key={index} style={styles.chipsItem}>
+		<TouchableOpacity onPress={() => { }} key={index} style={styles.chipsItem}>
                 {category.icon}
                 <Text> {category.name} </Text>
               </TouchableOpacity>
@@ -218,31 +219,33 @@ const MapViewScreen = ({ navigation }) => {
             )}
           >
             {boozeOffers.map((marker, index) => (
-              <View style={styles.card} key={index}>
-                <View style={styles.textContent}>
-                  <Text numberOfLines={1} style={styles.cardtitle}> {marker.booze_type} </Text>
-                  <Text numberOfLines={1} style={styles.cardDescription}> {marker.price}€ </Text>
-                  <Text numberOfLines={1} style={styles.cardDescription}> {marker.description} </Text>
-                  <View style={styles.button}>
-                    <TouchableOpacity
+
+		<TouchableOpacity
                       onPress={() => { }}
-                      style={[styles.signIn, {
-                        borderColor: '#FF6347',
-                        borderWidth: 1
-                      }]}
                     >
-                      <Text style={[styles.textSign, {
-                        color: '#ff6347'
-                      }]}>
-                        Booze up!
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
+		    <View style={styles.card} key={index}>
+			<View style={styles.textContent}>
+			<View style={styles.button}>
+
+				<Text numberOfLines={1} style={styles.cardtitle}> {marker.booze_type} </Text>
+				<Text numberOfLines={1} style={styles.cardDescription}> {marker.price}€ </Text>
+				<Text numberOfLines={1} style={styles.cardDescription}> {marker.description} </Text>
+			    <Text style={[styles.textSign, {
+				color: '#ff6347'
+			    }]}>
+				Booze up!
+			    </Text>
+			</View>
+			</View>
+		    </View>
+		</TouchableOpacity>
             ))}
 
           </Animated.ScrollView>
+
+	    <TouchableOpacity onPress={() => navigation.toggleDrawer()} style={{position: 'absolute', left: 50, top: 200}}>
+		<Text> Drawer </Text>
+	    </TouchableOpacity>
         </View>
         : <SafeAreaView style={styles.container}>
           <ActivityIndicator size="large" color="#000000" />
