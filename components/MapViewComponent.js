@@ -180,6 +180,11 @@ const MapViewScreen = ({ navigation }) => {
               paddingRight: Platform.OS === 'android' ? 20 : 0
             }}
           >
+	    <TouchableOpacity onPress={() => navigation.toggleDrawer()} style={styles.chipsItem}>
+		<Text> ≣ </Text>
+	    </TouchableOpacity>
+
+
             {initialMapState.categories.map((category, index) => (
 		<TouchableOpacity onPress={() => { }} key={index} style={styles.chipsItem}>
                 {category.icon}
@@ -243,9 +248,6 @@ const MapViewScreen = ({ navigation }) => {
 
           </Animated.ScrollView>
 
-	    <TouchableOpacity onPress={() => navigation.toggleDrawer()} style={{position: 'absolute', left: 50, top: 200}}>
-		<Text> Drawer </Text>
-	    </TouchableOpacity>
         </View>
         : <SafeAreaView style={styles.container}>
           <ActivityIndicator size="large" color="#000000" />
@@ -279,7 +281,7 @@ const styles = StyleSheet.create({
   },
   searchBox: {
     position: 'absolute',
-    marginTop: Platform.OS === 'ios' ? 40 : 40,
+    marginTop: Platform.OS === 'ios' ? 40 : 60,
     flexDirection: 'row',
     backgroundColor: '#fff',
     width: '90%',
@@ -294,7 +296,7 @@ const styles = StyleSheet.create({
   },
   chipScrollView: {
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 110 : 100,
+    top: Platform.OS === 'ios' ? 110 : 120,
     paddingHorizontal: 10,
   },
   chipsIcon: {
@@ -312,7 +314,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.5,
     shadowRadius: 5,
-    elevation: 10,
+    elevation: 5,
   },
   scrollView: {
     position: 'absolute',
