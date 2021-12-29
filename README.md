@@ -1,6 +1,4 @@
 <div align="center">
-  <img src="https://www.kindpng.com/picc/m/208-2086241_alcohol-alcoholic-drink-drinking-non-beverage-liquid-alcohol.png" alt="BoozeUp" width="400" />
-  <p></p>
   <h1>BoozeUp</h1>
   <p></p>
   <sup>
