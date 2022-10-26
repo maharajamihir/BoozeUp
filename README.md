@@ -18,9 +18,10 @@
     <a href="#book-documentation"><b>Docs</b></a>
   </p>
   <br />
+
+<img src="./boozeupmap.jpeg" alt="boozeupmap" width="50"/>
 </div>
 
-![BoozeUp Map View](./boozeupmap.jpeg)
 ---
 ## :calling: About
 BoozeUp - Buy and Sell Booze convienently and easily using an App. No hassle to reach the stores before they close or drive too far to get booze in the evening. Locate Booze in your Area and keep the party running!
