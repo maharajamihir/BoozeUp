@@ -19,7 +19,7 @@
   </p>
   <br />
 
-<img src="./boozeupmap.jpeg" alt="boozeupmap" width="50"/>
+<img src="./boozeupmap.jpeg" alt="boozeupmap" width="200"/>
 </div>
 
 ---
